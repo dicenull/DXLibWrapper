@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiceVsYosanoReMake", "DiceVsYosanoReMake\DiceVsYosanoReMake.csproj", "{ACF1671A-E009-4613-8A49-6C43F0FA3EF7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DxLibUtilities", "DxLibUtilities\DxLibUtilities.csproj", "{9EBA38A3-BF2E-4B35-80E1-9372FDB5BB59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diagram", "Diagram\Diagram.csproj", "{805B8754-7DBE-433A-A874-E7DD99C6CA27}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{ACF1671A-E009-4613-8A49-6C43F0FA3EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACF1671A-E009-4613-8A49-6C43F0FA3EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACF1671A-E009-4613-8A49-6C43F0FA3EF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EBA38A3-BF2E-4B35-80E1-9372FDB5BB59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EBA38A3-BF2E-4B35-80E1-9372FDB5BB59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EBA38A3-BF2E-4B35-80E1-9372FDB5BB59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EBA38A3-BF2E-4B35-80E1-9372FDB5BB59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{805B8754-7DBE-433A-A874-E7DD99C6CA27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{805B8754-7DBE-433A-A874-E7DD99C6CA27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{805B8754-7DBE-433A-A874-E7DD99C6CA27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{805B8754-7DBE-433A-A874-E7DD99C6CA27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
