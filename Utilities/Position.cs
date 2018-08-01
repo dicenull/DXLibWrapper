@@ -2,7 +2,7 @@
 
 namespace Utilities
 {
-    public enum Position
+    public enum Location
     {
         Top,
         TopRight,
@@ -24,34 +24,34 @@ namespace Utilities
         /// <param name="size">長方形の大きさ</param>
         /// <param name="pos">起点の場所</param>
         /// <returns>長方形の左上の位置</returns>
-        public static Vector2 ToTopLeft(this Vector2 point, Vector2 size, Position pos)
+        public static Vector2 ToTopLeft(this Vector2 point, Vector2 size, Location pos)
         {
             switch(pos)
             {
-                case Position.Top:
+                case Location.Top:
                     point.X -= size.X / 2;
                     break;
-                case Position.TopRight:
+                case Location.TopRight:
                     point.X -= size.X;
                     break;
-                case Position.Right:
+                case Location.Right:
                     point -= new Vector2(size.X, size.Y / 2);
                     break;
-                case Position.BottomRight:
+                case Location.BottomRight:
                     point -= size;
                     break;
-                case Position.Bottom:
+                case Location.Bottom:
                     point -= new Vector2(size.X / 2, size.Y);
                     break;
-                case Position.BottomLeft:
+                case Location.BottomLeft:
                     point.Y -= size.Y;
                     break;
-                case Position.Left:
+                case Location.Left:
                     point.Y -= size.Y / 2;
                     break;
-                case Position.TopLeft:
+                case Location.TopLeft:
                     break;
-                case Position.Center:
+                case Location.Center:
                     point -= (size / 2);
                     break;
             }
