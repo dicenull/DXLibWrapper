@@ -49,7 +49,7 @@ namespace Diagram
         /// <param name="w">幅</param>
         /// <param name="h">高さ</param>
         /// <param name="pos">起点の位置</param>
-        public Rect(float x, float y, float w, float h, Position pos = Position.TopLeft)
+        public Rect(float x, float y, float w, float h, Location pos = Location.TopLeft)
             : this(new Vector2(x, y), new Vector2(w, h), pos) { }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Diagram
         /// <param name="y">基準となる位置のY座標</param>
         /// <param name="size">大きさ</param>
         /// <param name="pos">起点の位置</param>
-        public Rect(float x, float y, Vector2 size, Position pos = Position.TopLeft)
+        public Rect(float x, float y, Vector2 size, Location pos = Location.TopLeft)
             : this(new Vector2(x, y), size, pos) { }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Diagram
         /// <param name="w">幅</param>
         /// <param name="h">高さ</param>
         /// <param name="pos">起点の位置</param>
-        public Rect(Vector2 point, float w, float h, Position pos = Position.TopLeft)
+        public Rect(Vector2 point, float w, float h, Location pos = Location.TopLeft)
             : this(point, new Vector2(w, h), pos) { }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Diagram
         /// <param name="point">基準となる位置</param>
         /// <param name="size">大きさ</param>
         /// <param name="pos">起点の位置</param>
-        public Rect(Vector2 point, Vector2 size, Position pos = Position.TopLeft)
+        public Rect(Vector2 point, Vector2 size, Location pos = Location.TopLeft)
         {
             point.ToTopLeft(size, pos);
             Point = point;
