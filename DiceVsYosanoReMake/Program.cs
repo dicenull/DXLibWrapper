@@ -21,7 +21,6 @@ namespace DiceVsYosanoReMake
             
             System.Drawing.Point point = new System.Drawing.Point(10);
             
-            Rect rect = new Rect(new Vector2(1, 1), )
             
             SceneManager sceneManager = new SceneManager(new MainScene());
             

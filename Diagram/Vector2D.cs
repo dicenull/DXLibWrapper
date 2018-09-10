@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Utilities;
 
 namespace Diagram
 {
-    using Float2 = Vector2D<float>;
-    using Vec2 = Vector2D<double>;
-    using Point = Vector2D<int>;
-
     public struct Vector2D<T> where T : struct, IComparable<T>
     {
         public T X { get; set; }
@@ -94,29 +87,18 @@ namespace Diagram
         }
         #endregion
 
-        public Vector2D<T> XX
-        {
-            get { return new Vector2D<T>(X, X); }
-        }
+        public Vector2D<T> XX => new Vector2D<T>(X, X);
 
-        public Vector2D<T> XY
-        {
-            get { return new Vector2D<T>(X, Y); }
-        }
+        public Vector2D<T> XY => new Vector2D<T>(X, Y);
 
-        public Vector2D<T> YX
-        {
-            get { return new Vector2D<T>(Y, X); }
-        }
+        public Vector2D<T> YX => new Vector2D<T>(Y, X);
 
-        public Vector2D<T> YY
-        {
-            get { return new Vector2D<T>(Y, Y); }
-        }
-        
+        public Vector2D<T> YY => new Vector2D<T>(Y, Y);
+
         public Vector2D<T> MovedBy(T x, T y)
         {
-            return new Vector2D<T>(x, y);
+            var add = Operator<T>.Add;
+            return new Vector2D<T>(add(x, X), add(y, Y));
         }
 
         public Vector2D<T> MovedBy(Vector2D<T> vector)
@@ -135,9 +117,9 @@ namespace Diagram
             this += vector;
         }
 
-        public bool isZero()
+        public bool IsZero()
         {
-            T zero = (T)(object)0.0;
+            var zero = (T)(object)0.0;
 
             return X.CompareTo(zero) == 0 && Y.CompareTo(zero) == 0;
         }
@@ -158,56 +140,66 @@ namespace Diagram
             return sub(multi(X, vector.Y), multi(Y, vector.X));
         }
 
-        public T Length()
+        public double Length()
         {
-            return (T)(object)Math.Sqrt((double)(object)Dot(this));
+            return Math.Sqrt(Convert.ToDouble(Dot(this)));
         }
 
-        public T DistanceFrom(Vector2D<T> vector)
+        public double DistanceFrom(Vector2D<T> vector)
         {
             return (this - vector).Length();
         }
-
-        public Vector2D<T> Normalized()
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="angle">[rad]</param>
+        /// <returns></returns>
+        public Vector2D<double> Rotated(double angle)
         {
-            return this / Length();
+            var s = Math.Sin(angle);
+            var c = Math.Cos(angle);
+            var x = Convert.ToDouble(X);
+            var y = Convert.ToDouble(Y);
+
+            return new Vector2D<double>(x * c - y * s, x * s + y * c);
         }
 
-        public void Normalize()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="angle">[rad]</param>
+        public void Rotate(double angle)
         {
-            this /= Length();
+            var p = Rotated(angle);
+            var x = (T) Convert.ChangeType(p.X, typeof(T));
+            var y = (T) Convert.ChangeType(p.Y, typeof(T));
+            
+            this = new Vector2D<T>(x, y);
         }
 
-        public Vector2D<T> Rotated(T angle)
+        public double GetAngle(Vector2D<T> vector)
         {
-            T s = (T)(object)Math.Sin((double)(object)angle);
-            T c = (T)(object)Math.Cos((double)(object)angle);
-
-            var add = Operator<T>.Add;
-            var sub = Operator<T>.Subtract;
-            var multi = Operator<T>.Multiply;
-
-            return new Vector2D<T>(sub(multi(X, c), multi(Y, s)), add(multi(X, s), multi(Y, c)));
-        }
-
-        public void Rotate(T angle)
-        {
-            this = Rotated(angle);
-        }
-
-        public T GetAngle(Vector2D<T> vector)
-        {
-            if(isZero() || vector.isZero())
-            {
-                return (T)(object)double.NaN;
-            }
-
-            return (T)(object)Math.Atan2((double)(object)Cross(vector), (double)(object)Dot(vector));
+            return Math.Atan2(Convert.ToDouble(Cross(vector)), Convert.ToDouble(Dot(vector)));
         }
         
         public override string ToString()
         {
             return $"({ X.ToString() }, { Y.ToString() })";
         }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Vector2D<T>))
+            {
+                return false;
+            }
+
+            var d = (Vector2D<T>)obj;
+            return EqualityComparer<T>.Default.Equals(X, d.X) &&
+                   EqualityComparer<T>.Default.Equals(Y, d.Y);
+        }
+
+        public override int GetHashCode() => 1861411795 ^ X.GetHashCode() ^ Y.GetHashCode();
     }
 }
