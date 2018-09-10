@@ -9,6 +9,11 @@ namespace Diagram
         public T X { get; set; }
         public T Y { get; set; }
 
+        public static Vector2D<T> GetZero =>
+            new Vector2D<T>(
+                (T) Convert.ChangeType(0, typeof(T)), 
+                (T) Convert.ChangeType(0, typeof(T)));
+
         public Vector2D(Vector2D<T> vector)
         {
             X = vector.X;
@@ -22,6 +27,7 @@ namespace Diagram
         }
 
         #region 演算子
+
         public static Vector2D<T> operator +(Vector2D<T> vector)
         {
             return vector;
@@ -41,11 +47,25 @@ namespace Diagram
             return new Vector2D<T>(add(vector1.X, vector2.X), add(vector1.Y, vector2.Y));
         }
 
+        public static Vector2D<T> operator +(Vector2D<T> vector, T value)
+        {
+            var add = Operator<T>.Add;
+
+            return new Vector2D<T>(add(vector.X, value), add(vector.Y, value));
+        }
+
         public static Vector2D<T> operator -(Vector2D<T> vector1, Vector2D<T> vector2)
         {
             var sub = Operator<T>.Subtract;
 
             return new Vector2D<T>(sub(vector1.X, vector2.X), sub(vector1.Y, vector2.Y));
+        }
+
+        public static Vector2D<T> operator -(Vector2D<T> vector, T value)
+        {
+            var sub = Operator<T>.Subtract;
+
+            return new Vector2D<T>(sub(vector.X, value), sub(vector.Y, value));
         }
 
         public static Vector2D<T> operator *(Vector2D<T> vector1, T value)
@@ -85,6 +105,7 @@ namespace Diagram
         {
             return (vector1.X.CompareTo(vector2.X) != 0) || (vector1.Y.CompareTo(vector2.Y) != 0);
         }
+
         #endregion
 
         public Vector2D<T> XX => new Vector2D<T>(X, X);
@@ -175,7 +196,7 @@ namespace Diagram
         {
             return (this - vector).Length();
         }
-        
+
         /// <summary>
         /// angleだけ回転させた座標を返す
         /// </summary>
@@ -199,10 +220,10 @@ namespace Diagram
             var p = Rotated(angle);
             var x = (T) Convert.ChangeType(p.X, typeof(T));
             var y = (T) Convert.ChangeType(p.Y, typeof(T));
-            
+
             this = new Vector2D<T>(x, y);
         }
-        
+
         /// <summary>
         /// vectorとこの座標が表す角度を返す
         /// </summary>
@@ -210,10 +231,10 @@ namespace Diagram
         {
             return Math.Atan2(Convert.ToDouble(Cross(vector)), Convert.ToDouble(Dot(vector)));
         }
-        
+
         public override string ToString()
         {
-            return $"({ X.ToString() }, { Y.ToString() })";
+            return $"({X.ToString()}, {Y.ToString()})";
         }
 
         public override bool Equals(object obj)
@@ -223,7 +244,7 @@ namespace Diagram
                 return false;
             }
 
-            var d = (Vector2D<T>)obj;
+            var d = (Vector2D<T>) obj;
             return EqualityComparer<T>.Default.Equals(X, d.X) &&
                    EqualityComparer<T>.Default.Equals(Y, d.Y);
         }

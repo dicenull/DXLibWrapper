@@ -1,6 +1,8 @@
-﻿using System.Numerics;
+﻿
+using System;
+using Utilities;
 
-namespace Utilities
+namespace Diagram
 {
     public enum Location
     {
@@ -24,35 +26,40 @@ namespace Utilities
         /// <param name="size">長方形の大きさ</param>
         /// <param name="pos">起点の場所</param>
         /// <returns>長方形の左上の位置</returns>
-        public static Vector2 ToTopLeft(this Vector2 point, Vector2 size, Location pos)
+        public static Vector2D<T> ToTopLeft<T>(this Vector2D<T> point, Vector2D<T> size, Location pos)
+            where T : struct, IComparable<T>
         {
-            switch(pos)
+            var two = (T) Convert.ChangeType(2, typeof(T));
+            var div = Operator<T>.Divide;
+            var sub = Operator<T>.Subtract;
+
+            switch (pos)
             {
                 case Location.Top:
-                    point.X -= size.X / 2;
+                    point.X = sub(point.X, div(size.X, two));
                     break;
                 case Location.TopRight:
-                    point.X -= size.X;
+                    point.X = sub(point.X, size.X);
                     break;
                 case Location.Right:
-                    point -= new Vector2(size.X, size.Y / 2);
+                    point -= new Vector2D<T>(size.X, div(size.Y, two));
                     break;
                 case Location.BottomRight:
                     point -= size;
                     break;
                 case Location.Bottom:
-                    point -= new Vector2(size.X / 2, size.Y);
+                    point -= new Vector2D<T>(div(size.X, two), size.Y);
                     break;
                 case Location.BottomLeft:
-                    point.Y -= size.Y;
+                    point.Y = sub(point.Y, size.Y);
                     break;
                 case Location.Left:
-                    point.Y -= size.Y / 2;
+                    point.Y = sub(point.Y, div(size.Y, two));
                     break;
                 case Location.TopLeft:
                     break;
                 case Location.Center:
-                    point -= (size / 2);
+                    point -= (size / two);
                     break;
             }
 
