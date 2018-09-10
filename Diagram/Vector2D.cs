@@ -95,35 +95,52 @@ namespace Diagram
 
         public Vector2D<T> YY => new Vector2D<T>(Y, Y);
 
+        /// <summary>
+        /// (x, y)だけ動かした先の座標を返す
+        /// </summary>
         public Vector2D<T> MovedBy(T x, T y)
         {
             var add = Operator<T>.Add;
             return new Vector2D<T>(add(x, X), add(y, Y));
         }
 
+        /// <summary>
+        /// vectorだけ動かした先の座標を返す
+        /// </summary>
         public Vector2D<T> MovedBy(Vector2D<T> vector)
         {
             return this + vector;
         }
 
+        /// <summary>
+        /// (x, y)だけ座標を動かす
+        /// </summary>
         public void MoveBy(T x, T y)
         {
             X = Operator<T>.Add(X, x);
             Y = Operator<T>.Add(Y, y);
         }
 
+        /// <summary>
+        /// vectorだけ座標を動かす
+        /// </summary>
+        /// <param name="vector"></param>
         public void MoveBy(Vector2D<T> vector)
         {
             this += vector;
         }
 
+        /// <summary>
+        /// (x, y)どちらも0であるかを返す
+        /// </summary>
         public bool IsZero()
         {
-            var zero = (T)(object)0.0;
-
-            return X.CompareTo(zero) == 0 && Y.CompareTo(zero) == 0;
+            return Convert.ToInt64(X) == 0 && Convert.ToInt64(Y) == 0;
         }
 
+        /// <summary>
+        /// vectorとの内積を返す
+        /// </summary>
         public T Dot(Vector2D<T> vector)
         {
             var add = Operator<T>.Add;
@@ -132,6 +149,9 @@ namespace Diagram
             return add(multi(X, vector.X), multi(Y, vector.Y));
         }
 
+        /// <summary>
+        /// vectorとの外積を返す
+        /// </summary>
         public T Cross(Vector2D<T> vector)
         {
             var sub = Operator<T>.Subtract;
@@ -140,21 +160,26 @@ namespace Diagram
             return sub(multi(X, vector.Y), multi(Y, vector.X));
         }
 
+        /// <summary>
+        /// 原点からの距離を返す
+        /// </summary>
         public double Length()
         {
             return Math.Sqrt(Convert.ToDouble(Dot(this)));
         }
 
+        /// <summary>
+        /// vectorからの距離を返す
+        /// </summary>
         public double DistanceFrom(Vector2D<T> vector)
         {
             return (this - vector).Length();
         }
         
         /// <summary>
-        /// 
+        /// angleだけ回転させた座標を返す
         /// </summary>
         /// <param name="angle">[rad]</param>
-        /// <returns></returns>
         public Vector2D<double> Rotated(double angle)
         {
             var s = Math.Sin(angle);
@@ -166,7 +191,7 @@ namespace Diagram
         }
 
         /// <summary>
-        /// 
+        /// angleだけ座標を回転させる
         /// </summary>
         /// <param name="angle">[rad]</param>
         public void Rotate(double angle)
@@ -177,7 +202,10 @@ namespace Diagram
             
             this = new Vector2D<T>(x, y);
         }
-
+        
+        /// <summary>
+        /// vectorとこの座標が表す角度を返す
+        /// </summary>
         public double GetAngle(Vector2D<T> vector)
         {
             return Math.Atan2(Convert.ToDouble(Cross(vector)), Convert.ToDouble(Dot(vector)));

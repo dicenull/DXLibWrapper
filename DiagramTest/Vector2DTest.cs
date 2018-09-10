@@ -20,6 +20,14 @@ namespace DiagramTest
         }
 
         [TestMethod]
+        public void ゼロであるか()
+        {
+            Point p1 = new Point(0, 0);
+
+            Assert.IsTrue(p1.IsZero());
+        }
+
+        [TestMethod]
         public void 等価()
         {
             Point p1 = new Point(1, 2);
