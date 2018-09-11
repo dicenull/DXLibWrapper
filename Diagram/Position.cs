@@ -6,13 +6,13 @@ namespace Diagram
 {
     public enum Location
     {
-        Top,
+        TopCenter,
         TopRight,
-        Right,
+        RightCenter,
         BottomRight,
-        Bottom,
+        BottomCenter,
         BottomLeft,
-        Left,
+        LeftCenter,
         TopLeft,
         Center
     }
@@ -35,25 +35,25 @@ namespace Diagram
 
             switch (pos)
             {
-                case Location.Top:
+                case Location.TopCenter:
                     point.X = sub(point.X, div(size.X, two));
                     break;
                 case Location.TopRight:
                     point.X = sub(point.X, size.X);
                     break;
-                case Location.Right:
+                case Location.RightCenter:
                     point -= new Vector2D<T>(size.X, div(size.Y, two));
                     break;
                 case Location.BottomRight:
                     point -= size;
                     break;
-                case Location.Bottom:
+                case Location.BottomCenter:
                     point -= new Vector2D<T>(div(size.X, two), size.Y);
                     break;
                 case Location.BottomLeft:
                     point.Y = sub(point.Y, size.Y);
                     break;
-                case Location.Left:
+                case Location.LeftCenter:
                     point.Y = sub(point.Y, div(size.Y, two));
                     break;
                 case Location.TopLeft:
