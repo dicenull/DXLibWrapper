@@ -21,19 +21,22 @@ namespace Diagram
         public Vector2D<T> Point { get; set; }
 
         #region コンストラクタ
-        
+
         /// <summary>
         /// デフォルトコンストラクタ
         /// </summary>
         public Rectangle()
-        { }
+        {
+        }
 
         /// <summary>
         /// 長方形を作成します
         /// </summary>
         /// <param name="size">大きさ</param>
         public Rectangle(Vector2D<T> size)
-            : this(Vector2D<T>.GetZero, size) { }
+            : this(Vector2D<T>.GetZero, size)
+        {
+        }
 
         /// <summary>
         /// 長方形を作成します
@@ -41,7 +44,9 @@ namespace Diagram
         /// <param name="w">幅</param>
         /// <param name="h">高さ</param>
         public Rectangle(T w, T h)
-            : this(Vector2D<T>.GetZero, new Vector2D<T>(w, h)) { }
+            : this(Vector2D<T>.GetZero, new Vector2D<T>(w, h))
+        {
+        }
 
         /// <summary>
         /// 長方形を作成します
@@ -52,7 +57,9 @@ namespace Diagram
         /// <param name="h">高さ</param>
         /// <param name="pos">起点の位置</param>
         public Rectangle(T x, T y, T w, T h, Location pos = Location.TopLeft)
-            : this(new Vector2D<T>(x, y), new Vector2D<T>(w, h), pos) { }
+            : this(new Vector2D<T>(x, y), new Vector2D<T>(w, h), pos)
+        {
+        }
 
         /// <summary>
         /// 長方形を作成します
@@ -62,7 +69,9 @@ namespace Diagram
         /// <param name="size">大きさ</param>
         /// <param name="pos">起点の位置</param>
         public Rectangle(T x, T y, Vector2D<T> size, Location pos = Location.TopLeft)
-            : this(new Vector2D<T>(x, y), size, pos) { }
+            : this(new Vector2D<T>(x, y), size, pos)
+        {
+        }
 
         /// <summary>
         /// 長方形を作成します
@@ -72,7 +81,9 @@ namespace Diagram
         /// <param name="h">高さ</param>
         /// <param name="pos">起点の位置</param>
         public Rectangle(Vector2D<T> point, T w, T h, Location pos = Location.TopLeft)
-            : this(point, new Vector2D<T>(w, h), pos) { }
+            : this(point, new Vector2D<T>(w, h), pos)
+        {
+        }
 
         /// <summary>
         /// 長方形を作成します
@@ -92,13 +103,15 @@ namespace Diagram
         /// </summary>
         /// <param name="rectangle">コピー元の長方形</param>
         public Rectangle(Rectangle<T> rectangle)
-            : this(rectangle.Point, rectangle.Size) { }
+            : this(rectangle.Point, rectangle.Size)
+        {
+        }
 
         #endregion
 
         public static bool operator ==(Rectangle<T> r1, Rectangle<T> r2)
         {
-            return r1.Point == r2.Point 
+            return r1.Point == r2.Point
                    && r1.Size == r2.Size;
         }
 
@@ -109,57 +122,65 @@ namespace Diagram
 
         public Rectangle<T> MovedBy(T x, T y)
         {
-            return this;
+            return new Rectangle<T>(Point.MovedBy(x, y), Size);
         }
 
         public Rectangle<T> MovedBy(Vector2D<T> v)
         {
-            return this;
+            return MovedBy(v.X, v.Y);
         }
 
         public void MoveBy(T x, T y)
         {
-
+            Point.MoveBy(x, y);
         }
 
         public void MoveBy(Vector2D<T> v)
         {
-
+            MoveBy(v.X, v.Y);
         }
 
         public Rectangle<T> Stretched(T xy)
         {
-            return this;
+            return Stretched(new Vector2D<T>(xy, xy));
         }
 
         public Rectangle<T> Stretched(T x, T y)
         {
-            return this;
+            return Stretched(new Vector2D<T>(x, y));
         }
 
         public Rectangle<T> Stretched(Vector2D<T> xy)
         {
-            return this;
+            var two = (T) Convert.ChangeType(2, typeof(T));
+            return new Rectangle<T>(Point - xy, Size + xy * two);
         }
 
         public Rectangle<T> Stretched(T top, T right, T bottom, T left)
         {
-            return this;
+            var add = Operator<T>.Add;
+            var sub = Operator<T>.Subtract;
+
+            return new Rectangle<T>(sub(Point.X, left), sub(Point.Y, top),
+                add(Size.X, add(left, right)), add(Size.Y, add(top, bottom)));
         }
 
         public Rectangle<double> Scaled(double s)
         {
-            return new Rectangle<double>();
+            return Scaled(s, s);
         }
 
         public Rectangle<double> Scaled(double sx, double sy)
         {
-            return new Rectangle<double>();
+            var point = new Vector2D<double>(Convert.ToDouble(Point.X), Convert.ToDouble(Point.Y));
+            var size = new Vector2D<double>(Convert.ToDouble(Size.X), Convert.ToDouble(Size.Y));
+
+            return new Rectangle<double>(point.X + size.X * 0.5, point.Y + size.X * 0.5, size.Y * sx, size.Y * sy);
         }
 
         public Rectangle<double> Scaled(Vector2D<double> s)
         {
-            return new Rectangle<double>();
+            return Scaled(s.X, s.Y);
         }
 
         public Rectangle<double> ScaledAt(double x, double y, double s)
@@ -190,6 +211,81 @@ namespace Diagram
         public Rectangle<double> ScaledAt(Vector2D<double> pos, Vector2D<double> s)
         {
             return new Rectangle<double>();
+        }
+
+        public Vector2D<T> TopRight => Point;
+
+        public Vector2D<T> BottomLeft
+        {
+            get
+            {
+                var add = Operator<T>.Add;
+                return new Vector2D<T>(Point.X, add(Point.Y, Size.Y));
+            }
+        }
+
+        public Vector2D<T> BottomRight
+        {
+            get
+            {
+                var add = Operator<T>.Add;
+                return new Vector2D<T>(add(Point.X, Size.X), add(Point.Y, Size.Y));
+            }
+        }
+
+        public Vector2D<T> TopCenter
+        {
+            get
+            {
+                var add = Operator<T>.Add;
+                var div = Operator<T>.Divide;
+                var two = (T) Convert.ChangeType(2, typeof(T));
+                return new Vector2D<T>(add(Point.X, div(Size.X, two)), Point.Y);
+            }
+        }
+
+        public Vector2D<T> BottomCenter
+        {
+            get
+            {
+                var add = Operator<T>.Add;
+                var div = Operator<T>.Divide;
+                var two = (T) Convert.ChangeType(2, typeof(T));
+                return new Vector2D<T>(add(Point.X, div(Size.X, two)), add(Point.Y, Size.Y));
+            }
+        }
+
+        public Vector2D<T> LeftCenter
+        {
+            get
+            {
+                var add = Operator<T>.Add;
+                var div = Operator<T>.Divide;
+                var two = (T) Convert.ChangeType(2, typeof(T));
+                return new Vector2D<T>(Point.X, add(Point.Y, div(Size.Y, two)));
+            }
+        }
+
+        public Vector2D<T> RightCenter
+        {
+            get
+            {
+                var add = Operator<T>.Add;
+                var div = Operator<T>.Divide;
+                var two = (T) Convert.ChangeType(2, typeof(T));
+                return new Vector2D<T>(add(Point.X, Size.X), add(Point.Y, div(Size.Y, two)));
+            }
+        }
+
+        public Vector2D<T> Center
+        {
+            get
+            {
+                var add = Operator<T>.Add;
+                var div = Operator<T>.Divide;
+                var two = (T) Convert.ChangeType(2, typeof(T));
+                return new Vector2D<T>(add(Point.X, div(Size.X, two)), add(Point.Y, div(Size.Y, two)));
+            }
         }
 
         public override bool Equals(object obj)
