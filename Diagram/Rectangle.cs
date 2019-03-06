@@ -8,17 +8,17 @@ using Utilities;
 
 namespace Diagram
 {
-    public class Rectangle<T> where T : struct, IComparable<T>
+    public class Rectangle
     {
         /// <summary>
         /// 長方形の大きさ
         /// </summary>
-        public Vector2D<T> Size { get; set; }
+        public Vector2D Size { get; set; }
 
         /// <summary>
         /// 長方形の左上の座標
         /// </summary>
-        public Vector2D<T> Point { get; set; }
+        public Vector2D Point { get; set; }
 
         #region コンストラクタ
 
@@ -33,8 +33,8 @@ namespace Diagram
         /// 長方形を作成します
         /// </summary>
         /// <param name="size">大きさ</param>
-        public Rectangle(Vector2D<T> size)
-            : this(Vector2D<T>.GetZero, size)
+        public Rectangle(Vector2D size)
+            : this(Vector2D.GetZero, size)
         {
         }
 
@@ -43,8 +43,8 @@ namespace Diagram
         /// </summary>
         /// <param name="w">幅</param>
         /// <param name="h">高さ</param>
-        public Rectangle(T w, T h)
-            : this(Vector2D<T>.GetZero, new Vector2D<T>(w, h))
+        public Rectangle(int w, int h)
+            : this(Vector2D.GetZero, new Vector2D(w, h))
         {
         }
 
@@ -56,8 +56,8 @@ namespace Diagram
         /// <param name="w">幅</param>
         /// <param name="h">高さ</param>
         /// <param name="pos">起点の位置</param>
-        public Rectangle(T x, T y, T w, T h, Location pos = Location.TopLeft)
-            : this(new Vector2D<T>(x, y), new Vector2D<T>(w, h), pos)
+        public Rectangle(int x, int y, int w, int h, Location pos = Location.TopLeft)
+            : this(new Vector2D(x, y), new Vector2D(w, h), pos)
         {
         }
 
@@ -68,8 +68,8 @@ namespace Diagram
         /// <param name="y">基準となる位置のY座標</param>
         /// <param name="size">大きさ</param>
         /// <param name="pos">起点の位置</param>
-        public Rectangle(T x, T y, Vector2D<T> size, Location pos = Location.TopLeft)
-            : this(new Vector2D<T>(x, y), size, pos)
+        public Rectangle(int x, int y, Vector2D size, Location pos = Location.TopLeft)
+            : this(new Vector2D(x, y), size, pos)
         {
         }
 
@@ -80,8 +80,8 @@ namespace Diagram
         /// <param name="w">幅</param>
         /// <param name="h">高さ</param>
         /// <param name="pos">起点の位置</param>
-        public Rectangle(Vector2D<T> point, T w, T h, Location pos = Location.TopLeft)
-            : this(point, new Vector2D<T>(w, h), pos)
+        public Rectangle(Vector2D point, int w, int h, Location pos = Location.TopLeft)
+            : this(point, new Vector2D(w, h), pos)
         {
         }
 
@@ -91,7 +91,7 @@ namespace Diagram
         /// <param name="point">基準となる位置</param>
         /// <param name="size">大きさ</param>
         /// <param name="pos">起点の位置</param>
-        public Rectangle(Vector2D<T> point, Vector2D<T> size, Location pos = Location.TopLeft)
+        public Rectangle(Vector2D point, Vector2D size, Location pos = Location.TopLeft)
         {
             point = point.ToTopLeft(size, pos);
             Point = point;
@@ -102,14 +102,14 @@ namespace Diagram
         /// 長方形を作成します
         /// </summary>
         /// <param name="rectangle">コピー元の長方形</param>
-        public Rectangle(Rectangle<T> rectangle)
+        public Rectangle(Rectangle rectangle)
             : this(rectangle.Point, rectangle.Size)
         {
         }
 
         #endregion
 
-        public static bool operator ==(Rectangle<T> r1, Rectangle<T> r2)
+        public static bool operator ==(Rectangle r1, Rectangle r2)
         {
             if(r1 as object == null || r2 as object == null)
             {
@@ -120,185 +120,170 @@ namespace Diagram
                    && r1.Size == r2.Size;
         }
 
-        public static bool operator !=(Rectangle<T> r1, Rectangle<T> r2)
+        public static bool operator !=(Rectangle r1, Rectangle r2)
         {
             return !(r1 == r2);
         }
 
-        public Rectangle<T> MovedBy(T x, T y)
+        public Rectangle MovedBy(int x, int y)
         {
-            return new Rectangle<T>(Point.MovedBy(x, y), Size);
+            return new Rectangle(Point.MovedBy(x, y), Size);
         }
 
-        public Rectangle<T> MovedBy(Vector2D<T> v)
+        public Rectangle MovedBy(Vector2D v)
         {
             return MovedBy(v.X, v.Y);
         }
 
-        public void MoveBy(T x, T y)
+        public void MoveBy(int x, int y)
         {
             Point.MoveBy(x, y);
         }
 
-        public void MoveBy(Vector2D<T> v)
+        public void MoveBy(Vector2D v)
         {
             MoveBy(v.X, v.Y);
         }
 
-        public Rectangle<T> Stretched(T xy)
+        public Rectangle Stretched(int xy)
         {
-            return Stretched(new Vector2D<T>(xy, xy));
+            return Stretched(new Vector2D(xy, xy));
         }
 
-        public Rectangle<T> Stretched(T x, T y)
+        public Rectangle Stretched(int x, int y)
         {
-            return Stretched(new Vector2D<T>(x, y));
+            return Stretched(new Vector2D(x, y));
         }
 
-        public Rectangle<T> Stretched(Vector2D<T> xy)
+        public Rectangle Stretched(Vector2D xy)
         {
-            var two = (T) Convert.ChangeType(2, typeof(T));
-            return new Rectangle<T>(Point - xy, Size + xy * two);
+            return new Rectangle(Point - xy, Size + xy * 2);
         }
 
-        public Rectangle<T> Stretched(T top, T right, T bottom, T left)
+        public Rectangle Stretched(int top, int right, int bottom, int left)
         {
-            var add = Operator<T>.Add;
-            var sub = Operator<T>.Subtract;
-
-            return new Rectangle<T>(sub(Point.X, left), sub(Point.Y, top),
-                add(Size.X, add(left, right)), add(Size.Y, add(top, bottom)));
+            return new Rectangle(
+                Point.X - left, 
+                Point.Y - top, 
+                Size.X + left + right, 
+                Size.Y + top + bottom);
         }
 
-        public Rectangle<double> Scaled(double s)
+        public Rectangle Scaled(double s)
         {
             return Scaled(s, s);
         }
 
-        public Rectangle<double> Scaled(double sx, double sy)
+        public Rectangle Scaled(double sx, double sy)
         {
-            var point = new Vector2D<double>(Convert.ToDouble(Point.X), Convert.ToDouble(Point.Y));
-            var size = new Vector2D<double>(Convert.ToDouble(Size.X), Convert.ToDouble(Size.Y));
-
-            return new Rectangle<double>(point.X + size.X * 0.5, point.Y + size.X * 0.5, size.Y * sx, size.Y * sy);
+            return new Rectangle(
+                Point.X + Size.X / 2,
+                Point.Y + Size.X / 2, 
+                (int)(Size.X * sx), 
+                (int)(Size.Y * sy));
         }
 
-        public Rectangle<double> Scaled(Vector2D<double> s)
+        public Rectangle Scaled(Vector2D s)
         {
             return Scaled(s.X, s.Y);
         }
 
-        public Rectangle<double> ScaledAt(double x, double y, double s)
+        public Rectangle ScaledAt(double x, double y, double s)
         {
-            return new Rectangle<double>();
+            return ScaledAt(x, y, s, s);
         }
 
-        public Rectangle<double> ScaledAt(double x, double y, double sx, double sy)
+        public Rectangle ScaledAt(double x, double y, double sx, double sy)
         {
-            return new Rectangle<double>();
+            return new Rectangle(
+                (int)(x + (Point.X - x) * sx),
+                (int)(y + (Point.Y - y) * sy),
+                (int)(Size.X * sx),
+                (int)(Size.Y * sy));
         }
 
-        public Rectangle<double> ScaledAt(double x, double y, Vector2D<double> s)
+        public Rectangle ScaledAt(double x, double y, Vector2D s)
         {
-            return new Rectangle<double>();
+            return ScaledAt(x, y, s.X, s.Y);
         }
 
-        public Rectangle<double> ScaledAt(Vector2D<double> pos, double s)
+        public Rectangle ScaledAt(Vector2D pos, double s)
         {
-            return new Rectangle<double>();
+            return ScaledAt(pos.X, pos.Y, s, s);
         }
 
-        public Rectangle<double> ScaledAt(Vector2D<double> pos, double sx, double sy)
+        public Rectangle ScaledAt(Vector2D pos, double sx, double sy)
         {
-            return new Rectangle<double>();
+            return ScaledAt(pos.X, pos.Y, sx, sy);
         }
 
-        public Rectangle<double> ScaledAt(Vector2D<double> pos, Vector2D<double> s)
+        public Rectangle ScaledAt(Vector2D pos, Vector2D s)
         {
-            return new Rectangle<double>();
+            return ScaledAt(pos.X, pos.Y, s.X, s.Y);
         }
 
-        public Vector2D<T> TopRight => Point;
+        public Vector2D TopRight => Point;
 
-        public Vector2D<T> BottomLeft
+        public Vector2D BottomLeft
         {
             get
             {
-                var add = Operator<T>.Add;
-                return new Vector2D<T>(Point.X, add(Point.Y, Size.Y));
+                return new Vector2D(Point.X, Point.Y + Size.Y);
             }
         }
 
-        public Vector2D<T> BottomRight
+        public Vector2D BottomRight
         {
             get
             {
-                var add = Operator<T>.Add;
-                return new Vector2D<T>(add(Point.X, Size.X), add(Point.Y, Size.Y));
+                return new Vector2D(Point.X + Size.X, Point.Y + Size.Y);
             }
         }
 
-        public Vector2D<T> TopCenter
+        public Vector2D TopCenter
         {
             get
             {
-                var add = Operator<T>.Add;
-                var div = Operator<T>.Divide;
-                var two = (T) Convert.ChangeType(2, typeof(T));
-                return new Vector2D<T>(add(Point.X, div(Size.X, two)), Point.Y);
+                return new Vector2D(Point.X + Size.X / 2, Point.Y);
             }
         }
 
-        public Vector2D<T> BottomCenter
+        public Vector2D BottomCenter
         {
             get
             {
-                var add = Operator<T>.Add;
-                var div = Operator<T>.Divide;
-                var two = (T) Convert.ChangeType(2, typeof(T));
-                return new Vector2D<T>(add(Point.X, div(Size.X, two)), add(Point.Y, Size.Y));
+                return new Vector2D(Point.X + Size.X / 2, Point.Y + Size.Y);
             }
         }
 
-        public Vector2D<T> LeftCenter
+        public Vector2D LeftCenter
         {
             get
             {
-                var add = Operator<T>.Add;
-                var div = Operator<T>.Divide;
-                var two = (T) Convert.ChangeType(2, typeof(T));
-                return new Vector2D<T>(Point.X, add(Point.Y, div(Size.Y, two)));
+                return new Vector2D(Point.X, Point.Y + Size.Y / 2);
             }
         }
 
-        public Vector2D<T> RightCenter
+        public Vector2D RightCenter
         {
             get
             {
-                var add = Operator<T>.Add;
-                var div = Operator<T>.Divide;
-                var two = (T) Convert.ChangeType(2, typeof(T));
-                return new Vector2D<T>(add(Point.X, Size.X), add(Point.Y, div(Size.Y, two)));
+                return new Vector2D(Point.X + Size.X, Point.Y + Size.Y / 2);
             }
         }
 
-        public Vector2D<T> Center
+        public Vector2D Center
         {
             get
             {
-                var add = Operator<T>.Add;
-                var div = Operator<T>.Divide;
-                var two = (T) Convert.ChangeType(2, typeof(T));
-                return new Vector2D<T>(add(Point.X, div(Size.X, two)), add(Point.Y, div(Size.Y, two)));
+                return new Vector2D(Point.X + Size.X / 2, Point.Y + Size.Y / 2);
             }
         }
 
         public override bool Equals(object obj)
         {
-            var rect = obj as Rectangle<T>;
-            return rect != null &&
-                   EqualityComparer<Vector2D<T>>.Default.Equals(Size, rect.Size) &&
-                   EqualityComparer<Vector2D<T>>.Default.Equals(Point, rect.Point);
+            var rect = obj as Rectangle;
+            return rect != null && Size.Equals(rect.Size) && Point.Equals(rect.Point);
         }
 
         public override int GetHashCode()

@@ -26,40 +26,35 @@ namespace Diagram
         /// <param name="size">長方形の大きさ</param>
         /// <param name="pos">起点の場所</param>
         /// <returns>長方形の左上の位置</returns>
-        public static Vector2D<T> ToTopLeft<T>(this Vector2D<T> point, Vector2D<T> size, Location pos)
-            where T : struct, IComparable<T>
+        public static Vector2D ToTopLeft(this Vector2D point, Vector2D size, Location pos)
         {
-            var two = (T) Convert.ChangeType(2, typeof(T));
-            var div = Operator<T>.Divide;
-            var sub = Operator<T>.Subtract;
-
             switch (pos)
             {
                 case Location.TopCenter:
-                    point.X = sub(point.X, div(size.X, two));
+                    point.X -= size.X / 2;
                     break;
                 case Location.TopRight:
-                    point.X = sub(point.X, size.X);
+                    point.X -= size.X;
                     break;
                 case Location.RightCenter:
-                    point -= new Vector2D<T>(size.X, div(size.Y, two));
+                    point -= new Vector2D(size.X, size.Y / 2);
                     break;
                 case Location.BottomRight:
                     point -= size;
                     break;
                 case Location.BottomCenter:
-                    point -= new Vector2D<T>(div(size.X, two), size.Y);
+                    point -= new Vector2D(size.X / 2, size.Y);
                     break;
                 case Location.BottomLeft:
-                    point.Y = sub(point.Y, size.Y);
+                    point.Y -= size.Y;
                     break;
                 case Location.LeftCenter:
-                    point.Y = sub(point.Y, div(size.Y, two));
+                    point.Y -= size.Y / 2;
                     break;
                 case Location.TopLeft:
                     break;
                 case Location.Center:
-                    point -= (size / two);
+                    point -= size / 2;
                     break;
             }
 

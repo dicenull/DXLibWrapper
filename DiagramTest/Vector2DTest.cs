@@ -4,8 +4,8 @@ using Diagram;
 
 namespace DiagramTest
 {
-    using Point = Vector2D<int>;
-    using Vec2 = Vector2D<double>;
+    using Point = Vector2D;
+    using Vec2 = Vector2D;
 
     [TestClass]
     public class Vector2DTest
@@ -77,13 +77,13 @@ namespace DiagramTest
         [TestMethod]
         public void 割り算()
         {
-            Vec2 p1 = new Vec2(1, 2);
+            Vec2 p1 = new Vec2(4, 2);
             Vec2 p2 = new Vec2(-2, 2);
 
-            Assert.AreEqual(p1 / p2, new Vec2(-0.5, 1));
-            Assert.AreEqual(p2 / p1, new Vec2(-2, 1));
+            Assert.AreEqual(p1 / p2, new Vec2(-2, 1));
+            Assert.AreEqual(p2 / p1, new Vec2(0, 1));
 
-            Assert.AreEqual(p1 / 2, new Vec2(0.5, 1));
+            Assert.AreEqual(p1 / 2, new Vec2(2, 1));
         }
 
         [TestMethod]
@@ -123,10 +123,7 @@ namespace DiagramTest
         {
             Vec2 p1 = new Vec2(1, 2);
             p1.Rotate(Math.PI);
-
-            // 判定のため丸める
-            p1 = new Vec2(Math.Round(p1.X), Math.Round(p1.Y));
-
+            
             Assert.AreEqual(p1, new Vec2(-1, -2));
         }
 
@@ -136,7 +133,7 @@ namespace DiagramTest
             Vec2 p1 = new Vec2(1, 1);
             Vec2 p2 = new Vec2(-1, 1);
 
-            Assert.AreEqual(p1.GetAngle(p2) * 180 / Math.PI, 90);
+            Assert.AreEqual(p1.GetAngle(p2) * 180 / Math.PI, -90);
         }
 
         [TestMethod]

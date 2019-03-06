@@ -5,8 +5,8 @@ using Diagram;
 
 namespace DiagramTest
 {
-    using Rect = Rectangle<int>;
-    using Point = Vector2D<int>;
+    using Rect = Rectangle;
+    using Point = Vector2D;
 
     [TestClass]
     public class RectTest
