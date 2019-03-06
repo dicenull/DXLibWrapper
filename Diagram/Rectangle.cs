@@ -111,6 +111,11 @@ namespace Diagram
 
         public static bool operator ==(Rectangle<T> r1, Rectangle<T> r2)
         {
+            if(r1 as object == null || r2 as object == null)
+            {
+                return false; 
+            }
+
             return r1.Point == r2.Point
                    && r1.Size == r2.Size;
         }

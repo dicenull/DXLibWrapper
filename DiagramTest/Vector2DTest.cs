@@ -142,12 +142,13 @@ namespace DiagramTest
         [TestMethod]
         public void 座標()
         {
-            Point p1 = new Point(1, 2);
+            int x = 1, y = 2;
+            Point p1 = new Point(x, y);
 
-            Assert.AreEqual(p1.XX, new Point(1, 1));
-            Assert.AreEqual(p1.XY, new Point(1, 2));
-            Assert.AreEqual(p1.YX, new Point(2, 1));
-            Assert.AreEqual(p1.YY, new Point(2, 2));
+            Assert.AreEqual(p1.XX, new Point(x, x));
+            Assert.AreEqual(p1.XY, new Point(x, y));
+            Assert.AreEqual(p1.YX, new Point(y, x));
+            Assert.AreEqual(p1.YY, new Point(y, y));
         }
     }
 

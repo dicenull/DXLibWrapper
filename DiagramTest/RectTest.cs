@@ -16,7 +16,7 @@ namespace DiagramTest
         {
             var r1 = new Rect(1, 2);
             var r2 = new Rect(r1);
-            Assert.IsTrue(r1.Equals(r2));
+            Assert.IsTrue(r1.Equals(r2), $"{r1} : {r2}");
 
             r1 = new Rect(1, 1, 1, 2);
             r2 = new Rect(new Point(1, 1), 1, 2);
@@ -33,6 +33,5 @@ namespace DiagramTest
             Assert.AreEqual(r1, new Rect(0, 2, size, Location.LeftCenter));
             Assert.AreEqual(r1, new Rect(2, 2, size, Location.Center));
         }
-
     }
 }
