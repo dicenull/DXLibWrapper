@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using DxLibDLL;
 
 namespace Diagram
@@ -12,13 +13,13 @@ namespace Diagram
     /// </summary>
     public partial class Rectangle
     {
-        public void Draw()
+        public void Draw(Color color)
         {
             int x = Point.X, y = Point.Y;
             int w = Size.w, h = Size.h;
-
-            // TODO : 色を指定できるように
-            DX.DrawBox(x, y, x + w, y + h, DX.GetColor(255, 255, 255), 1);
+            var dxColor = DX.GetColor(color.R, color.G, color.B);
+            
+            DX.DrawBox(x, y, x + w, y + h, dxColor, 1);
         }
     }
 }

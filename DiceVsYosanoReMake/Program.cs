@@ -5,7 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using DxLibDLL;
 using DxLibUtilities;
+using System.Drawing;
 using Diagram;
+
+using Rectangle = Diagram.Rectangle;
 
 namespace DiceVsYosanoReMake
 {
@@ -24,7 +27,7 @@ namespace DiceVsYosanoReMake
             {
                 DX.ClearDrawScreen();
 
-                rect.Draw();
+                rect.Draw(Color.Gray);
                 rect.MoveBy(x: 1, y: 0);
 
                 DX.ScreenFlip();
