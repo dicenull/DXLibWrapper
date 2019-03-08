@@ -25,8 +25,7 @@ namespace DiceVsYosanoReMake
                 DX.ClearDrawScreen();
 
                 rect.Draw();
-
-                rect.MoveBy(new Vector2D(1, 0));
+                rect.MoveBy(x: 1, y: 0);
 
                 DX.ScreenFlip();
             }
