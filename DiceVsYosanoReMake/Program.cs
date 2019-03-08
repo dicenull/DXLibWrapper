@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using DxLibDLL;
 using DxLibUtilities;
 using Diagram;
-using System.Numerics;
 
 namespace DiceVsYosanoReMake
 {
@@ -18,17 +17,16 @@ namespace DiceVsYosanoReMake
             DX.ChangeWindowMode(DX.TRUE);
 
             DX.DxLib_Init();
-            
-            System.Drawing.Point point = new System.Drawing.Point(10);
-            
-            
-            SceneManager sceneManager = new SceneManager(new MainScene());
+
+            var rect = new Rectangle(point: new Vector2D(10, 5), size: new Vector2D(30, 30));
             
             while(DX.ProcessMessage() != -1)
             {
                 DX.ClearDrawScreen();
-                
 
+                rect.Draw();
+
+                rect.MoveBy(new Vector2D(1, 0));
 
                 DX.ScreenFlip();
             }
