@@ -8,7 +8,10 @@ using Utilities;
 
 namespace Diagram
 {
-    public class Rectangle
+    /// <summary>
+    /// 四角形クラスロジック部
+    /// </summary>
+    public partial class Rectangle
     {
         /// <summary>
         /// 長方形の大きさ
@@ -137,7 +140,7 @@ namespace Diagram
 
         public void MoveBy(int x, int y)
         {
-            Point.MoveBy(x, y);
+            Point = Point.MovedBy(x, y);
         }
 
         public void MoveBy(Vector2D v)
@@ -222,6 +225,7 @@ namespace Diagram
             return ScaledAt(pos.X, pos.Y, s.X, s.Y);
         }
 
+        #region 座標取得
         public Vector2D TopRight => Point;
 
         public Vector2D BottomLeft
@@ -279,6 +283,8 @@ namespace Diagram
                 return new Vector2D(Point.X + Size.X / 2, Point.Y + Size.Y / 2);
             }
         }
+
+        #endregion
 
         public override bool Equals(object obj)
         {
