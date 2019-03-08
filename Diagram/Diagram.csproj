@@ -51,6 +51,7 @@
     <Compile Include="Rectangle.cs" />
     <Compile Include="Rectangle_DX.cs" />
     <Compile Include="Vector2D.cs" />
+    <Compile Include="Vector2DExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Utilities\Utilities.csproj">
