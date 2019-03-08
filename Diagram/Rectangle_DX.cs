@@ -15,7 +15,7 @@ namespace Diagram
         public void Draw()
         {
             int x = Point.X, y = Point.Y;
-            int w = Size.X, h = Size.Y;
+            int w = Size.w, h = Size.h;
 
             // TODO : 色を指定できるように
             DX.DrawBox(x, y, x + w, y + h, DX.GetColor(255, 255, 255), 1);

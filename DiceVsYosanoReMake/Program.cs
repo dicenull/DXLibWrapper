@@ -18,7 +18,7 @@ namespace DiceVsYosanoReMake
 
             DX.DxLib_Init();
 
-            var rect = new Rectangle(point: new Vector2D(10, 5), size: new Vector2D(30, 30));
+            var rect = new Rectangle(point: (10, 5), size: (30, 30));
             
             while(DX.ProcessMessage() != -1)
             {

@@ -16,7 +16,7 @@ namespace Diagram
         /// <summary>
         /// 長方形の大きさ
         /// </summary>
-        public Vector2D Size { get; set; }
+        public (int w, int h) Size { get; set; }
 
         /// <summary>
         /// 長方形の左上の座標
@@ -29,14 +29,14 @@ namespace Diagram
         /// デフォルトコンストラクタ
         /// </summary>
         public Rectangle()
-        {
-        }
-
+            : this(0, 0)
+        { }
+        
         /// <summary>
         /// 長方形を作成します
         /// </summary>
         /// <param name="size">大きさ</param>
-        public Rectangle(Vector2D size)
+        public Rectangle((int w, int h) size)
             : this(Vector2D.GetZero, size)
         {
         }
@@ -47,9 +47,13 @@ namespace Diagram
         /// <param name="w">幅</param>
         /// <param name="h">高さ</param>
         public Rectangle(int w, int h)
-            : this(Vector2D.GetZero, new Vector2D(w, h))
+            : this(Vector2D.GetZero, (w, h))
         {
         }
+
+        public Rectangle((int x, int y) point, (int w, int h) size)
+            : this(new Vector2D(point.x, point.y), size)
+        { }
 
         /// <summary>
         /// 長方形を作成します
@@ -60,7 +64,7 @@ namespace Diagram
         /// <param name="h">高さ</param>
         /// <param name="pos">起点の位置</param>
         public Rectangle(int x, int y, int w, int h, Location pos = Location.TopLeft)
-            : this(new Vector2D(x, y), new Vector2D(w, h), pos)
+            : this(new Vector2D(x, y), (w, h), pos)
         {
         }
 
@@ -72,7 +76,7 @@ namespace Diagram
         /// <param name="size">大きさ</param>
         /// <param name="pos">起点の位置</param>
         public Rectangle(int x, int y, Vector2D size, Location pos = Location.TopLeft)
-            : this(new Vector2D(x, y), size, pos)
+            : this(new Vector2D(x, y), (size.X, size.Y), pos)
         {
         }
 
@@ -84,7 +88,7 @@ namespace Diagram
         /// <param name="h">高さ</param>
         /// <param name="pos">起点の位置</param>
         public Rectangle(Vector2D point, int w, int h, Location pos = Location.TopLeft)
-            : this(point, new Vector2D(w, h), pos)
+            : this(point, (w, h), pos)
         {
         }
 
@@ -94,12 +98,15 @@ namespace Diagram
         /// <param name="point">基準となる位置</param>
         /// <param name="size">大きさ</param>
         /// <param name="pos">起点の位置</param>
-        public Rectangle(Vector2D point, Vector2D size, Location pos = Location.TopLeft)
+        public Rectangle(Vector2D point, (int w, int h) size, Location pos = Location.TopLeft)
         {
-            point = point.ToTopLeft(size, pos);
-            Point = point;
+            Point = point.ToTopLeft(size, pos);
             Size = size;
         }
+
+        public Rectangle(Vector2D point, Vector2D size, Location pos = Location.TopLeft)
+            : this(point, (size.X, size.Y), pos)
+        { }
 
         /// <summary>
         /// 長方形を作成します
@@ -160,7 +167,7 @@ namespace Diagram
 
         public Rectangle Stretched(Vector2D xy)
         {
-            return new Rectangle(Point - xy, Size + xy * 2);
+            return new Rectangle(Point - xy, new Vector2D(Size.w, Size.h) + xy * 2);
         }
 
         public Rectangle Stretched(int top, int right, int bottom, int left)
@@ -168,8 +175,8 @@ namespace Diagram
             return new Rectangle(
                 Point.X - left, 
                 Point.Y - top, 
-                Size.X + left + right, 
-                Size.Y + top + bottom);
+                Size.w + left + right, 
+                Size.h + top + bottom);
         }
 
         public Rectangle Scaled(double s)
@@ -180,10 +187,10 @@ namespace Diagram
         public Rectangle Scaled(double sx, double sy)
         {
             return new Rectangle(
-                Point.X + Size.X / 2,
-                Point.Y + Size.X / 2, 
-                (int)(Size.X * sx), 
-                (int)(Size.Y * sy));
+                Point.X + Size.w / 2,
+                Point.Y + Size.h / 2, 
+                (int)(Size.w * sx), 
+                (int)(Size.h * sy));
         }
 
         public Rectangle Scaled(Vector2D s)
@@ -201,8 +208,8 @@ namespace Diagram
             return new Rectangle(
                 (int)(x + (Point.X - x) * sx),
                 (int)(y + (Point.Y - y) * sy),
-                (int)(Size.X * sx),
-                (int)(Size.Y * sy));
+                (int)(Size.w * sx),
+                (int)(Size.h * sy));
         }
 
         public Rectangle ScaledAt(double x, double y, Vector2D s)
@@ -232,7 +239,7 @@ namespace Diagram
         {
             get
             {
-                return new Vector2D(Point.X, Point.Y + Size.Y);
+                return new Vector2D(Point.X, Point.Y + Size.h);
             }
         }
 
@@ -240,7 +247,7 @@ namespace Diagram
         {
             get
             {
-                return new Vector2D(Point.X + Size.X, Point.Y + Size.Y);
+                return new Vector2D(Point.X + Size.w, Point.Y + Size.h);
             }
         }
 
@@ -248,7 +255,7 @@ namespace Diagram
         {
             get
             {
-                return new Vector2D(Point.X + Size.X / 2, Point.Y);
+                return new Vector2D(Point.X + Size.w / 2, Point.Y);
             }
         }
 
@@ -256,7 +263,7 @@ namespace Diagram
         {
             get
             {
-                return new Vector2D(Point.X + Size.X / 2, Point.Y + Size.Y);
+                return new Vector2D(Point.X + Size.w / 2, Point.Y + Size.h);
             }
         }
 
@@ -264,7 +271,7 @@ namespace Diagram
         {
             get
             {
-                return new Vector2D(Point.X, Point.Y + Size.Y / 2);
+                return new Vector2D(Point.X, Point.Y + Size.h / 2);
             }
         }
 
@@ -272,7 +279,7 @@ namespace Diagram
         {
             get
             {
-                return new Vector2D(Point.X + Size.X, Point.Y + Size.Y / 2);
+                return new Vector2D(Point.X + Size.w, Point.Y + Size.h / 2);
             }
         }
 
@@ -280,7 +287,7 @@ namespace Diagram
         {
             get
             {
-                return new Vector2D(Point.X + Size.X / 2, Point.Y + Size.Y / 2);
+                return new Vector2D(Point.X + Size.w / 2, Point.Y + Size.h / 2);
             }
         }
 

@@ -19,6 +19,11 @@ namespace Diagram
 
     public static class Vector2Extensions
     {
+        public static Vector2D ToTopLeft(this Vector2D point, (int w, int h) size, Location pos)
+        {
+            return ToTopLeft(point, new Vector2D(size.w, size.h), pos);
+        }
+        
         /// <summary>
         /// 長方形上の起点の位置から左上の位置を求める
         /// </summary>
