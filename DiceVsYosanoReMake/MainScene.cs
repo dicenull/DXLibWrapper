@@ -4,18 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DxLibUtilities;
-using DxLibDLL;
+using System.Drawing;
+using Rectangle = Diagram.Rectangle;
 
 namespace DiceVsYosanoReMake
 {
-    class MainScene : IScene
+    class MainScene : SceneBase
     {
-        public void Draw()
+        private Rectangle rect;
+
+        public MainScene()
+            : base()
         {
+            rect = new Rectangle(point: (10, 5), size: (30, 30));
         }
 
-        public IScene Update()
+        protected override void draw()
         {
+            rect.Draw(Color.Gray);
+            rect.DrawFrame(Color.Red);
+        }
+
+        protected override SceneBase update()
+        {
+            rect.MoveBy(x: 1, y: 0);
+
             return this;
         }
     }

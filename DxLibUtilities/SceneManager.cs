@@ -8,9 +8,9 @@ namespace DxLibUtilities
 {
     public class SceneManager
     {
-        private IScene currentScene;
+        private SceneBase currentScene;
         
-        public SceneManager(IScene scene)
+        public SceneManager(SceneBase scene)
         {
             currentScene = scene;
         }

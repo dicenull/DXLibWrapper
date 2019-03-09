@@ -327,5 +327,10 @@ namespace Diagram
         {
             return -1986401011 ^ Size.GetHashCode() ^ Point.GetHashCode();
         }
+
+        public override string ToString()
+        {
+            return $"原点 : {Point}, 大きさ : {Size}";
+        }
     }
 }

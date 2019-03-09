@@ -8,33 +8,28 @@ using DxLibUtilities;
 using System.Drawing;
 using Diagram;
 
-using Rectangle = Diagram.Rectangle;
-
 namespace DiceVsYosanoReMake
 {
     class Program
     {
         static void Main(string[] args)
         {
-            DX.SetDrawScreen(DX.DX_SCREEN_BACK);
-            DX.ChangeWindowMode(DX.TRUE);
+            SceneBase scene = new MainScene();
 
-            DX.DxLib_Init();
-
-            var rect = new Rectangle(point: (10, 5), size: (30, 30));
-            
-            while(DX.ProcessMessage() != -1)
+            while(true)
             {
-                DX.ClearDrawScreen();
+                try
+                {
+                    scene = scene.Update();
+                }
+                catch (Exception exc)
+                {
+                    Console.WriteLine(exc.Message);
+                    DX.DxLib_End();
+                }
 
-                rect.Draw(Color.Gray);
-                rect.DrawFrame(Color.Red);
-                rect.MoveBy(x: 1, y: 0);
-
-                DX.ScreenFlip();
+                scene.Draw();
             }
-
-            DX.DxLib_End();
         }
     }
 }

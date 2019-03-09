@@ -47,5 +47,11 @@
     <Compile Include="Scene.cs" />
     <Compile Include="SceneManager.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DxLibrary\DxLibrary.csproj">
+      <Project>{43e26b34-895c-4aab-92f0-5fcb7c3bd7b5}</Project>
+      <Name>DxLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

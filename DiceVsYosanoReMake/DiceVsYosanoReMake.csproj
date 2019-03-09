@@ -61,6 +61,10 @@
       <Project>{805b8754-7dbe-433a-a874-e7dd99c6ca27}</Project>
       <Name>Diagram</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DxLibrary\DxLibrary.csproj">
+      <Project>{43e26b34-895c-4aab-92f0-5fcb7c3bd7b5}</Project>
+      <Name>DxLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DxLibUtilities\DxLibUtilities.csproj">
       <Project>{9eba38a3-bf2e-4b35-80e1-9372fdb5bb59}</Project>
       <Name>DxLibUtilities</Name>
