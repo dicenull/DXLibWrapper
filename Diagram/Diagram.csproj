@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Line.cs" />
+    <Compile Include="Line_DX.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rectangle.cs" />
@@ -56,6 +58,10 @@
     <ProjectReference Include="..\DxLibrary\DxLibrary.csproj">
       <Project>{43e26b34-895c-4aab-92f0-5fcb7c3bd7b5}</Project>
       <Name>DxLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DxLibUtilities\DxLibUtilities.csproj">
+      <Project>{9eba38a3-bf2e-4b35-80e1-9372fdb5bb59}</Project>
+      <Name>DxLibUtilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utilities\Utilities.csproj">
       <Project>{fd6f17d8-4a94-4645-84b6-5810bc9d90eb}</Project>
