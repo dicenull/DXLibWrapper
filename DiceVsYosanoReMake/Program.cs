@@ -14,7 +14,7 @@ namespace DiceVsYosanoReMake
     {
         static void Main(string[] args)
         {
-            SceneManager manager = new SceneManager(new MainScene());
+            var manager = new SceneManager(new MainScene());
             
             while(manager.Update())
             { }
