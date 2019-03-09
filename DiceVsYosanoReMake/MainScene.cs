@@ -25,7 +25,7 @@ namespace DiceVsYosanoReMake
             rect.DrawFrame(Color.Red);
         }
 
-        protected override SceneBase update()
+        public override SceneBase Update()
         {
             rect.MoveBy(x: 1, y: 0);
 

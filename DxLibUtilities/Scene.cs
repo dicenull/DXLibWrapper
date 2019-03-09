@@ -9,18 +9,10 @@ namespace DxLibUtilities
 {
     public abstract class SceneBase
     {
-        protected abstract SceneBase update();
+        public abstract SceneBase Update();
 
         protected abstract void draw();
-
-        public SceneBase()
-        {
-            DX.SetDrawScreen(DX.DX_SCREEN_BACK);
-            DX.ChangeWindowMode(DX.TRUE);
-
-            DX.DxLib_Init();
-        }
-
+        
         public void Draw()
         {
             DX.ClearDrawScreen();
@@ -28,16 +20,6 @@ namespace DxLibUtilities
             draw();
 
             DX.ScreenFlip();
-        }
-
-        public SceneBase Update()
-        {
-            if(DX.ProcessMessage() == -1)
-            {
-                throw new Exception("DX ERROR");
-            }
-
-            return update();
         }
     }
 }

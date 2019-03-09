@@ -14,22 +14,10 @@ namespace DiceVsYosanoReMake
     {
         static void Main(string[] args)
         {
-            SceneBase scene = new MainScene();
-
-            while(true)
-            {
-                try
-                {
-                    scene = scene.Update();
-                }
-                catch (Exception exc)
-                {
-                    Console.WriteLine(exc.Message);
-                    DX.DxLib_End();
-                }
-
-                scene.Draw();
-            }
+            SceneManager manager = new SceneManager(new MainScene());
+            
+            while(manager.Update())
+            { }
         }
     }
 }

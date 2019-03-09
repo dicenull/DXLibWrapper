@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DxLibDLL;
 
 namespace DxLibUtilities
 {
@@ -12,15 +13,28 @@ namespace DxLibUtilities
         
         public SceneManager(SceneBase scene)
         {
+            DX.SetDrawScreen(DX.DX_SCREEN_BACK);
+            DX.ChangeWindowMode(DX.TRUE);
+
+            DX.DxLib_Init();
+
             currentScene = scene;
         }
 
         public bool Update()
         {
+            if(DX.ProcessMessage() == -1)
+            {
+                DX.DxLib_End();
+                return false;
+            }
+
+            currentScene.Draw();
             var nextScene = currentScene.Update();
 
             if(nextScene == null)
             {
+                DX.DxLib_End();
                 return false;
             }
 
