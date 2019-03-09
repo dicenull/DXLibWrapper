@@ -13,13 +13,23 @@ namespace Diagram
     /// </summary>
     public partial class Rectangle
     {
-        public void Draw(Color color)
+        private void draw(Color color, bool isFill)
         {
             int x = Point.X, y = Point.Y;
             int w = Size.w, h = Size.h;
             var dxColor = DX.GetColor(color.R, color.G, color.B);
-            
-            DX.DrawBox(x, y, x + w, y + h, dxColor, 1);
+
+            DX.DrawBox(x, y, x + w, y + h, dxColor, isFill ? 1:0);
+        }
+
+        public void Draw(Color color)
+        {
+            draw(color, isFill: true);
+        }
+
+        public void DrawFrame(Color color)
+        {
+            draw(color, isFill: false);
         }
     }
 }

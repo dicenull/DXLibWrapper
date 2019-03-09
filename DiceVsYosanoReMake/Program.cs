@@ -28,6 +28,7 @@ namespace DiceVsYosanoReMake
                 DX.ClearDrawScreen();
 
                 rect.Draw(Color.Gray);
+                rect.DrawFrame(Color.Red);
                 rect.MoveBy(x: 1, y: 0);
 
                 DX.ScreenFlip();
