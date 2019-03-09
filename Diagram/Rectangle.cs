@@ -155,21 +155,45 @@ namespace Diagram
             MoveBy(v.X, v.Y);
         }
 
+        /// <summary>
+        /// 伸縮した長方形を返す
+        /// </summary>
+        /// <param name="xy">上下左右の伸縮</param>
+        /// <returns>伸縮した長方形</returns>
         public Rectangle Stretched(int xy)
         {
             return Stretched(new Vector2D(xy, xy));
         }
 
+        /// <summary>
+        /// 伸縮した長方形を返す
+        /// </summary>
+        /// <param name="x">左右方向の伸縮</param>
+        /// <param name="y">上下方向の伸縮</param>
+        /// <returns>伸縮した長方形</returns>
         public Rectangle Stretched(int x, int y)
         {
             return Stretched(new Vector2D(x, y));
         }
 
+        /// <summary>
+        /// 伸縮した長方形を返す
+        /// </summary>
+        /// <param name="xy">上下と左右の伸縮率</param>
+        /// <returns>伸縮した長方形</returns>
         public Rectangle Stretched(Vector2D xy)
         {
             return new Rectangle(Point - xy, new Vector2D(Size.w, Size.h) + xy * 2);
         }
 
+        /// <summary>
+        /// 伸縮した長方形を返す
+        /// </summary>
+        /// <param name="top">上への伸縮</param>
+        /// <param name="right">右への伸縮</param>
+        /// <param name="bottom">下への伸縮</param>
+        /// <param name="left">左への伸縮</param>
+        /// <returns>伸縮した長方形</returns>
         public Rectangle Stretched(int top, int right, int bottom, int left)
         {
             return new Rectangle(

@@ -94,5 +94,18 @@ namespace DiagramTest
                 }
             }
         }
+
+        [TestMethod]
+        public void 伸縮()
+        {
+            var pos = new Point(1, 3);
+            (int x, int y) size = (5, 7);
+
+            var rect = new Rect(point: pos, size: size);
+
+            Assert.AreEqual(new Rect(pos - (1, 1), (size.x + 2, size.y + 2)), rect.Stretched(1));
+
+            Assert.AreEqual(new Rect(pos - (1, 1), (size.x, size.y + 2)), rect.Stretched(1, -1, 1, 1));
+        }
     }
 }
