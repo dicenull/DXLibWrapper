@@ -56,5 +56,42 @@ namespace Diagram
         {
             Center.MoveBy(x, y);
         }
+
+        public void MoveBy(Vector2D vector)
+        {
+            Center.MoveBy(vector);
+        }
+
+        public Vector2D Top
+        {
+            get
+            {
+                return new Vector2D(Center.X, Center.Y - Radius); ;
+            }
+        }
+
+        public Vector2D Right
+        {
+            get
+            {
+                return new Vector2D(Center.X + Radius, Center.Y);
+            }
+        }
+
+        public Vector2D Bottom
+        {
+            get
+            {
+                return new Vector2D(Center.X, Center.Y + Radius);
+            }
+        }
+
+        public Vector2D Left
+        {
+            get
+            {
+                return new Vector2D(Center.X - Radius, Center.Y);
+            }
+        }
     }
 }

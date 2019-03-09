@@ -4,11 +4,11 @@ using DxLibUtilities;
 
 namespace Diagram
 {
-    public partial class Line
+    public partial class Circle
     {
         public void Draw(Color color)
         {
-            DX.DrawLine(Begin.X, Begin.Y, End.X, End.Y, color.ToDxColor());
+            DX.DrawCircle(Center.X, Center.Y, Radius, color.ToDxColor());
         }
     }
 }

@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Circle.cs" />
+    <Compile Include="Circle_DX.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Line_DX.cs" />
     <Compile Include="Position.cs" />
