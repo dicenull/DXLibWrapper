@@ -4,13 +4,16 @@ using Utilities;
 
 namespace Diagram
 {
-    public struct Vector2D
+    public class Vector2D
     {
         public int X { get; set; }
         public int Y { get; set; }
 
         public static Vector2D GetZero =>
             new Vector2D(0, 0);
+
+        public Vector2D()
+            : this(0, 0) { }
 
         public Vector2D(Vector2D vector)
         {
@@ -117,8 +120,7 @@ namespace Diagram
         /// </summary>
         public void MoveBy(int x, int y)
         {
-            X += x;
-            Y += y;
+            MoveBy(new Vector2D(x, y));
         }
 
         /// <summary>
@@ -127,7 +129,8 @@ namespace Diagram
         /// <param name="vector"></param>
         public void MoveBy(Vector2D vector)
         {
-            this += vector;
+            X += vector.X;
+            Y += vector.Y;
         }
 
         /// <summary>
@@ -188,7 +191,9 @@ namespace Diagram
         /// <param name="angle">[rad]</param>
         public void Rotate(double angle)
         {
-            this = Rotated(angle);
+            var v = Rotated(angle);
+            X = v.X;
+            Y = v.Y;
         }
 
         /// <summary>

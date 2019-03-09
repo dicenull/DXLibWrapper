@@ -8,9 +8,17 @@ namespace Diagram
 {
     public partial class Line
     {
+        /// <summary>
+        /// 開始点
+        /// </summary>
         public Vector2D Begin { get; set; }
+
+        /// <summary>
+        /// 終点
+        /// </summary>
         public Vector2D End { get; set; }
 
+        #region コンストラクタ
         public Line()
         {
             Begin = new Vector2D();
@@ -34,7 +42,8 @@ namespace Diagram
             Begin = begin;
             End = end;
         }
-        
+        #endregion
+
         public Line MovedBy(int x, int y)
         {
             return new Line(Begin.MovedBy(x, y), End.MovedBy(x, y));
@@ -47,8 +56,8 @@ namespace Diagram
 
         public void MoveBy(int x, int y)
         {
-            Begin = Begin.MovedBy(x, y);
-            End = End.MovedBy(x, y);
+            Begin.MoveBy(x, y);
+            End.MoveBy(x, y);
         }
 
         public void MoveBy(Vector2D vector)

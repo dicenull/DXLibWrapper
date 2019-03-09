@@ -147,7 +147,7 @@ namespace Diagram
 
         public void MoveBy(int x, int y)
         {
-            Point = Point.MovedBy(x, y);
+            Point.MoveBy(x, y);
         }
 
         public void MoveBy(Vector2D v)
