@@ -216,5 +216,16 @@ namespace Diagram
         }
 
         public override int GetHashCode() => 1861411795 ^ X.GetHashCode() ^ Y.GetHashCode();
+
+
+        public static Vector2D operator+ (Vector2D vector, (int x, int y) pos)
+        {
+            return new Vector2D(vector.X + pos.x, vector.Y + pos.y);
+        }
+
+        public static Vector2D operator- (Vector2D vector, (int x, int y) pos)
+        {
+            return new Vector2D(vector.X - pos.x, vector.Y - pos.y);
+        }
     }
 }
