@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using DxLibDLL;
+using DxLibUtilities;
 
 namespace Diagram
 {
@@ -17,9 +18,8 @@ namespace Diagram
         {
             int x = Point.X, y = Point.Y;
             int w = Size.w, h = Size.h;
-            var dxColor = DX.GetColor(color.R, color.G, color.B);
-
-            DX.DrawBox(x, y, x + w, y + h, dxColor, isFill ? 1:0);
+            
+            DX.DrawBox(x, y, x + w, y + h, color.ToDxColor(), isFill ? 1:0);
         }
 
         public void Draw(Color color)
