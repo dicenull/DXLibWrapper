@@ -33,7 +33,8 @@ namespace DiceVsYosanoReMake
         public override SceneBase Update()
         {
             rect.MoveBy(x: 1, y: 0);
-            
+
+            line.MoveBy(1, 1);
             line.End += new Vector2D(0, 1);
 
             return this;
