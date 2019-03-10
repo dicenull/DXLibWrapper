@@ -10,5 +10,10 @@ namespace Diagram
         {
             DX.DrawCircle(Origin.X, Origin.Y, Radius, color.ToDxColor());
         }
+
+        public void DrawFrame(Color color)
+        {
+            DX.DrawCircle(Origin.X, Origin.Y, Radius, color.ToDxColor(), 0);
+        }
     }
 }
