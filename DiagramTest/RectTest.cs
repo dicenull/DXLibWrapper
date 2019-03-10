@@ -54,9 +54,9 @@ namespace DiagramTest
             var size = (5, 3);
             var rect = new Rect(size);
 
-            for(int x = -50; x <= 50; x++)
+            for (int x = -50; x <= 50; x++)
             {
-                for (int y = -50; y < 50;y++)
+                for (int y = -50; y < 50; y++)
                 {
                     rect.Point = new Point(x, y);
 
@@ -64,7 +64,7 @@ namespace DiagramTest
                 }
             }
         }
-        
+
         [TestMethod]
         public void 等価()
         {
@@ -83,14 +83,18 @@ namespace DiagramTest
             var rect = new Rect(size: (3, 5));
 
             var position = new Point(0, 0);
-            for(int x = 0; x < 10;x++)
+            for (int x = 0; x < 10; x++)
             {
-                for(int y = 0;y < 10;y++)
+                for (int y = 0; y < 10; y++)
                 {
+                    var preRect = new Rect(rect);
+
                     position += new Point(x, y);
                     rect.MoveBy(x, y);
 
                     Assert.AreEqual(position, rect.Point);
+
+                    Assert.AreEqual(rect, preRect.MovedBy(x, y));
                 }
             }
         }

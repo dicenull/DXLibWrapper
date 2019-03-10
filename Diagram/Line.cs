@@ -25,6 +25,12 @@ namespace Diagram
             End = new Vector2D();
         }
 
+        public Line(Line line)
+        {
+            Begin = line.Begin;
+            End = line.End;
+        }
+
         public Line(int x0, int y0, int x1, int y1)
             : this(new Vector2D(x0, y0), new Vector2D(x1, y1))
         { }
@@ -95,6 +101,11 @@ namespace Diagram
 
         public static bool operator ==(Line l1, Line l2)
         {
+            if(l1 as object == null || l2 as object == null)
+            {
+                return false;
+            }
+
             return l1.Begin == l2.Begin
                 && l1.End == l2.End;
         }

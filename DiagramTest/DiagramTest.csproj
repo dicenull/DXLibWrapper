@@ -52,6 +52,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LineTest.cs" />
     <Compile Include="RectTest.cs" />
     <Compile Include="Vector2DTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
