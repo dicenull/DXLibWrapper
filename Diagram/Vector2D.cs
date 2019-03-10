@@ -4,17 +4,14 @@ using Utilities;
 
 namespace Diagram
 {
-    public class Vector2D
+    public struct Vector2D
     {
         public int X { get; set; }
         public int Y { get; set; }
 
         public static Vector2D GetZero =>
             new Vector2D(0, 0);
-
-        public Vector2D()
-            : this(0, 0) { }
-
+        
         public Vector2D(Vector2D vector)
         {
             X = vector.X;
@@ -138,7 +135,7 @@ namespace Diagram
         /// </summary>
         public bool IsZero()
         {
-            return Convert.ToInt64(X) == 0 && Convert.ToInt64(Y) == 0;
+            return X == 0 && Y == 0;
         }
 
         /// <summary>

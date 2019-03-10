@@ -34,6 +34,11 @@ namespace Diagram
 
         public static bool operator==(Circle c1, Circle c2)
         {
+            if(c1 as object == null || c2 as object == null)
+            {
+                return false;
+            }
+
             return c1.Center == c2.Center && c1.Radius == c2.Radius;
         }
 
@@ -41,7 +46,7 @@ namespace Diagram
         {
             return !(c1 == c2);
         }
-
+        
         public Circle MovedBy(int x, int y)
         {
             return new Circle(Center + (x, y), Radius);
@@ -54,7 +59,7 @@ namespace Diagram
 
         public void MoveBy(int x, int y)
         {
-            Center.MoveBy(x, y);
+            Center = Center.MovedBy(x, y);
         }
 
         public void MoveBy(Vector2D vector)
@@ -92,6 +97,14 @@ namespace Diagram
             {
                 return new Vector2D(Center.X - Radius, Center.Y);
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            var circle = obj as Circle;
+
+            return circle != null &&
+                circle.Center == Center && circle.Radius == Radius;
         }
     }
 }

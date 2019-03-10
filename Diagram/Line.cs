@@ -56,8 +56,8 @@ namespace Diagram
 
         public void MoveBy(int x, int y)
         {
-            Begin.MoveBy(x, y);
-            End.MoveBy(x, y);
+            Begin = Begin.MovedBy(x, y);
+            End = End.MovedBy(x, y);
         }
 
         public void MoveBy(Vector2D vector)
