@@ -62,5 +62,34 @@ namespace Diagram
         {
             return new Triangle(this);
         }
+
+        public static bool operator== (Triangle t1, Triangle t2)
+        {
+            if(t1 as object == null || t2 as object == null)
+            {
+                return false;
+            }
+
+            return t1.Pos0 == t2.Pos0
+                && t1.Pos1 == t2.Pos1
+                && t1.Pos2 == t2.Pos2;
+        }
+
+        public static bool operator!=(Triangle t1, Triangle t2)
+        {
+            return !(t1 == t2);
+        }
+
+        public override bool Equals(object obj)
+        {
+            var triangle = obj as Triangle;
+
+            return this == triangle;
+        }
+
+        public override string ToString()
+        {
+            return $"{Pos0} {Pos1} {Pos2}";
+        }
     }
 }

@@ -56,6 +56,7 @@
     <Compile Include="DiagramTestUtility.cs" />
     <Compile Include="LineTest.cs" />
     <Compile Include="RectTest.cs" />
+    <Compile Include="TriangleTest.cs" />
     <Compile Include="Vector2DTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
