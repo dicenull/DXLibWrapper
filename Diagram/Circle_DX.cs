@@ -8,7 +8,7 @@ namespace Diagram
     {
         public void Draw(Color color)
         {
-            DX.DrawCircle(Center.X, Center.Y, Radius, color.ToDxColor());
+            DX.DrawCircle(Origin.X, Origin.Y, Radius, color.ToDxColor());
         }
     }
 }

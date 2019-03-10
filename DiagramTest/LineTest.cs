@@ -18,18 +18,7 @@ namespace DiagramTest
         [TestMethod]
         public void 移動()
         {
-            var line = new Line(1, 0, -1, 2);
-
-            for(int x = 0;x < 10;x++)
-            {
-                for(int y = 0;y < 10;y++)
-                {
-                    var preLine = new Line(line);
-
-                    line.MoveBy(x, y);
-                    Assert.AreEqual(line, preLine.MovedBy(new Vector2D(x, y)));
-                }
-            }
+            DiagramTestUtility<Line>.Move(new Line(1, 0, -1, 2));
         }
 
         [TestMethod]

@@ -52,6 +52,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CircleTest.cs" />
+    <Compile Include="DiagramTestUtility.cs" />
     <Compile Include="LineTest.cs" />
     <Compile Include="RectTest.cs" />
     <Compile Include="Vector2DTest.cs" />

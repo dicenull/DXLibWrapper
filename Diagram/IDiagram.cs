@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace Diagram
 {
-    public interface IDiagram<T>
+    public interface IDiagram<T> : ICloneable
     {
         void MoveBy(int x, int y);
         void MoveBy(Vector2D vector);
 
         T MovedBy(int x, int y);
         T MovedBy(Vector2D vector);
+
+        Vector2D Origin { get; }
     }
 }

@@ -18,6 +18,15 @@ namespace Diagram
         /// </summary>
         public Vector2D End { get; set; }
 
+
+        public Vector2D Origin
+        {
+            get
+            {
+                return (Begin + End) / 2;
+            }
+        }
+
         #region コンストラクタ
         public Line()
         {
@@ -93,12 +102,6 @@ namespace Diagram
             return Begin.DistanceFrom(End);
         }
 
-        public Vector2D Center()
-        {
-            return (Begin + End) / 2;
-        }
-
-
         public static bool operator ==(Line l1, Line l2)
         {
             if(l1 as object == null || l2 as object == null)
@@ -126,6 +129,11 @@ namespace Diagram
         public override int GetHashCode()
         {
             return 1903003160 ^ Begin.GetHashCode() ^ End.GetHashCode();
+        }
+
+        public object Clone()
+        {
+            return new Line(this);
         }
     }
 }

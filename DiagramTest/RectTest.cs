@@ -58,7 +58,7 @@ namespace DiagramTest
             {
                 for (int y = -50; y < 50; y++)
                 {
-                    rect.Point = new Point(x, y);
+                    rect.Origin = new Point(x, y);
 
                     Assert.AreEqual(size, rect.Size);
                 }
@@ -80,23 +80,7 @@ namespace DiagramTest
         [TestMethod]
         public void 移動()
         {
-            var rect = new Rect(size: (3, 5));
-
-            var position = new Point(0, 0);
-            for (int x = 0; x < 10; x++)
-            {
-                for (int y = 0; y < 10; y++)
-                {
-                    var preRect = new Rect(rect);
-
-                    position += new Point(x, y);
-                    rect.MoveBy(x, y);
-
-                    Assert.AreEqual(position, rect.Point);
-
-                    Assert.AreEqual(rect, preRect.MovedBy(x, y));
-                }
-            }
+            DiagramTestUtility<Rect>.Move(new Rect(size: (3, 5)));
         }
 
         [TestMethod]
