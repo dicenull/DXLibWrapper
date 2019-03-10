@@ -11,7 +11,7 @@ namespace Diagram
     /// <summary>
     /// 四角形クラスロジック部
     /// </summary>
-    public partial class Rectangle
+    public partial class Rectangle : IDiagram<Rectangle>
     {
         /// <summary>
         /// 長方形の大きさ

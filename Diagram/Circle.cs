@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Diagram
 {
-    public partial class Circle
+    public partial class Circle : IDiagram<Circle>
     {
         /// <summary>
         /// 中心座標
@@ -17,6 +17,12 @@ namespace Diagram
         /// 半径
         /// </summary>
         public int Radius { get; set; }
+
+        public Circle()
+            : this(Vector2D.GetZero, 1) { }
+
+        public Circle(Circle circle)
+            : this(circle.Center, circle.Radius) { }
 
         public Circle(int r)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Diagram
 {
-    public partial class Line
+    public partial class Line : IDiagram<Line>
     {
         /// <summary>
         /// 開始点
