@@ -11,7 +11,7 @@ namespace Diagram
         /// <summary>
         /// 中心座標
         /// </summary>
-        public Vector2D Origin { get; set; }
+        public Vector2D Center { get; set; }
 
         /// <summary>
         /// 半径
@@ -22,7 +22,7 @@ namespace Diagram
             : this(Vector2D.GetZero, 1) { }
 
         public Circle(Circle circle)
-            : this(circle.Origin, circle.Radius) { }
+            : this(circle.Center, circle.Radius) { }
 
         public Circle(int r)
         {
@@ -34,7 +34,7 @@ namespace Diagram
 
         public Circle(Vector2D center, int r)
         {
-            Origin = center;
+            Center = center;
             Radius = r;
         }
 
@@ -45,7 +45,7 @@ namespace Diagram
                 return false;
             }
 
-            return c1.Origin == c2.Origin && c1.Radius == c2.Radius;
+            return c1.Center == c2.Center && c1.Radius == c2.Radius;
         }
 
         public static bool operator!= (Circle c1, Circle c2)
@@ -55,7 +55,7 @@ namespace Diagram
         
         public Circle MovedBy(int x, int y)
         {
-            return new Circle(Origin + (x, y), Radius);
+            return new Circle(Center + (x, y), Radius);
         }
 
         public Circle MovedBy(Vector2D vector)
@@ -65,19 +65,19 @@ namespace Diagram
 
         public void MoveBy(int x, int y)
         {
-            Origin = Origin.MovedBy(x, y);
+            Center = Center.MovedBy(x, y);
         }
 
         public void MoveBy(Vector2D vector)
         {
-            Origin.MoveBy(vector);
+            Center.MoveBy(vector);
         }
 
         public Vector2D Top
         {
             get
             {
-                return new Vector2D(Origin.X, Origin.Y - Radius); ;
+                return new Vector2D(Center.X, Center.Y - Radius); ;
             }
         }
 
@@ -85,7 +85,7 @@ namespace Diagram
         {
             get
             {
-                return new Vector2D(Origin.X + Radius, Origin.Y);
+                return new Vector2D(Center.X + Radius, Center.Y);
             }
         }
 
@@ -93,7 +93,7 @@ namespace Diagram
         {
             get
             {
-                return new Vector2D(Origin.X, Origin.Y + Radius);
+                return new Vector2D(Center.X, Center.Y + Radius);
             }
         }
 
@@ -101,7 +101,7 @@ namespace Diagram
         {
             get
             {
-                return new Vector2D(Origin.X - Radius, Origin.Y);
+                return new Vector2D(Center.X - Radius, Center.Y);
             }
         }
 
@@ -110,7 +110,7 @@ namespace Diagram
             var circle = obj as Circle;
 
             return circle != null &&
-                circle.Origin == Origin && circle.Radius == Radius;
+                circle.Center == Center && circle.Radius == Radius;
         }
 
         public object Clone()

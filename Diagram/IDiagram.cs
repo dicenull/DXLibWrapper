@@ -14,6 +14,6 @@ namespace Diagram
         T MovedBy(int x, int y);
         T MovedBy(Vector2D vector);
 
-        Vector2D Origin { get; }
+        Vector2D Center { get; }
     }
 }

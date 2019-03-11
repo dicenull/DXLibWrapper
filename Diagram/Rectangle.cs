@@ -21,7 +21,7 @@ namespace Diagram
         /// <summary>
         /// 長方形の左上の座標
         /// </summary>
-        public Vector2D Origin { get; set; }
+        public Vector2D TopLeft { get; set; }
 
         #region コンストラクタ
 
@@ -100,7 +100,7 @@ namespace Diagram
         /// <param name="pos">起点の位置</param>
         public Rectangle(Vector2D point, (int w, int h) size, Location pos = Location.TopLeft)
         {
-            Origin = point.ToTopLeft(size, pos);
+            TopLeft = point.ToTopLeft(size, pos);
             Size = size;
         }
 
@@ -113,7 +113,7 @@ namespace Diagram
         /// </summary>
         /// <param name="rectangle">コピー元の長方形</param>
         public Rectangle(Rectangle rectangle)
-            : this(rectangle.Origin, rectangle.Size)
+            : this(rectangle.TopLeft, rectangle.Size)
         {
         }
 
@@ -126,7 +126,7 @@ namespace Diagram
                 return false; 
             }
 
-            return r1.Origin == r2.Origin
+            return r1.TopLeft == r2.TopLeft
                    && r1.Size == r2.Size;
         }
 
@@ -137,7 +137,7 @@ namespace Diagram
 
         public Rectangle MovedBy(int x, int y)
         {
-            return new Rectangle(Origin.MovedBy(x, y), Size);
+            return new Rectangle(TopLeft.MovedBy(x, y), Size);
         }
 
         public Rectangle MovedBy(Vector2D v)
@@ -147,7 +147,7 @@ namespace Diagram
 
         public void MoveBy(int x, int y)
         {
-            Origin = Origin.MovedBy(x, y);
+            TopLeft = TopLeft.MovedBy(x, y);
         }
 
         public void MoveBy(Vector2D v)
@@ -183,7 +183,7 @@ namespace Diagram
         /// <returns>伸縮した長方形</returns>
         public Rectangle Stretched(Vector2D xy)
         {
-            return new Rectangle(Origin - xy, new Vector2D(Size.w, Size.h) + xy * 2);
+            return new Rectangle(TopLeft - xy, new Vector2D(Size.w, Size.h) + xy * 2);
         }
 
         /// <summary>
@@ -197,8 +197,8 @@ namespace Diagram
         public Rectangle Stretched(int top, int right, int bottom, int left)
         {
             return new Rectangle(
-                Origin.X - left, 
-                Origin.Y - top, 
+                TopLeft.X - left, 
+                TopLeft.Y - top, 
                 Size.w + left + right, 
                 Size.h + top + bottom);
         }
@@ -211,8 +211,8 @@ namespace Diagram
         public Rectangle Scaled(double sx, double sy)
         {
             return new Rectangle(
-                Origin.X + Size.w / 2,
-                Origin.Y + Size.h / 2, 
+                TopLeft.X + Size.w / 2,
+                TopLeft.Y + Size.h / 2, 
                 (int)(Size.w * sx), 
                 (int)(Size.h * sy));
         }
@@ -230,8 +230,8 @@ namespace Diagram
         public Rectangle ScaledAt(double x, double y, double sx, double sy)
         {
             return new Rectangle(
-                (int)(x + (Origin.X - x) * sx),
-                (int)(y + (Origin.Y - y) * sy),
+                (int)(x + (TopLeft.X - x) * sx),
+                (int)(y + (TopLeft.Y - y) * sy),
                 (int)(Size.w * sx),
                 (int)(Size.h * sy));
         }
@@ -257,13 +257,13 @@ namespace Diagram
         }
 
         #region 座標取得
-        public Vector2D TopRight => Origin;
+        public Vector2D TopRight => TopLeft;
 
         public Vector2D BottomLeft
         {
             get
             {
-                return new Vector2D(Origin.X, Origin.Y + Size.h);
+                return new Vector2D(TopLeft.X, TopLeft.Y + Size.h);
             }
         }
 
@@ -271,7 +271,7 @@ namespace Diagram
         {
             get
             {
-                return new Vector2D(Origin.X + Size.w, Origin.Y + Size.h);
+                return new Vector2D(TopLeft.X + Size.w, TopLeft.Y + Size.h);
             }
         }
 
@@ -279,7 +279,7 @@ namespace Diagram
         {
             get
             {
-                return new Vector2D(Origin.X + Size.w / 2, Origin.Y);
+                return new Vector2D(TopLeft.X + Size.w / 2, TopLeft.Y);
             }
         }
 
@@ -287,7 +287,7 @@ namespace Diagram
         {
             get
             {
-                return new Vector2D(Origin.X + Size.w / 2, Origin.Y + Size.h);
+                return new Vector2D(TopLeft.X + Size.w / 2, TopLeft.Y + Size.h);
             }
         }
 
@@ -295,7 +295,7 @@ namespace Diagram
         {
             get
             {
-                return new Vector2D(Origin.X, Origin.Y + Size.h / 2);
+                return new Vector2D(TopLeft.X, TopLeft.Y + Size.h / 2);
             }
         }
 
@@ -303,7 +303,7 @@ namespace Diagram
         {
             get
             {
-                return new Vector2D(Origin.X + Size.w, Origin.Y + Size.h / 2);
+                return new Vector2D(TopLeft.X + Size.w, TopLeft.Y + Size.h / 2);
             }
         }
 
@@ -311,7 +311,7 @@ namespace Diagram
         {
             get
             {
-                return new Vector2D(Origin.X + Size.w / 2, Origin.Y + Size.h / 2);
+                return new Vector2D(TopLeft.X + Size.w / 2, TopLeft.Y + Size.h / 2);
             }
         }
 
@@ -320,17 +320,17 @@ namespace Diagram
         public override bool Equals(object obj)
         {
             var rect = obj as Rectangle;
-            return rect != null && Size.Equals(rect.Size) && Origin.Equals(rect.Origin);
+            return rect != null && Size.Equals(rect.Size) && TopLeft.Equals(rect.TopLeft);
         }
 
         public override int GetHashCode()
         {
-            return -1986401011 ^ Size.GetHashCode() ^ Origin.GetHashCode();
+            return -1986401011 ^ Size.GetHashCode() ^ TopLeft.GetHashCode();
         }
 
         public override string ToString()
         {
-            return $"原点 : {Origin}, 大きさ : {Size}";
+            return $"原点 : {TopLeft}, 大きさ : {Size}";
         }
 
         public object Clone()

@@ -12,7 +12,7 @@ namespace Diagram
         public Vector2D Pos1 { get; set; }
         public Vector2D Pos2 { get; set; }
 
-        public Vector2D Origin
+        public Vector2D Center
         {
             get
             {

@@ -58,7 +58,7 @@ namespace DiagramTest
             {
                 for (int y = -50; y < 50; y++)
                 {
-                    rect.Origin = new Point(x, y);
+                    rect.TopLeft = new Point(x, y);
 
                     Assert.AreEqual(size, rect.Size);
                 }

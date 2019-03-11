@@ -7,7 +7,7 @@ namespace DiagramTest
     {
         public static void Move(IDiagram<T> diagram)
         {
-            var position = diagram.Origin;
+            var position = diagram.Center;
             for (int x = 0; x < 10; x++)
             {
                 for (int y = 0; y < 10; y++)
@@ -17,7 +17,7 @@ namespace DiagramTest
                     position += new Vector2D(x, y);
                     diagram.MoveBy(x, y);
 
-                    Assert.AreEqual(position, diagram.Origin);
+                    Assert.AreEqual(position, diagram.Center);
 
                     Assert.AreEqual(diagram, preDiagram.MovedBy(x, y));
                 }

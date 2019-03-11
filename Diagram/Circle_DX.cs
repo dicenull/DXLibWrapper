@@ -8,12 +8,12 @@ namespace Diagram
     {
         public void Draw(Color color)
         {
-            DX.DrawCircle(Origin.X, Origin.Y, Radius, color.ToDxColor());
+            DX.DrawCircle(Center.X, Center.Y, Radius, color.ToDxColor());
         }
 
         public void DrawFrame(Color color)
         {
-            DX.DrawCircle(Origin.X, Origin.Y, Radius, color.ToDxColor(), 0);
+            DX.DrawCircle(Center.X, Center.Y, Radius, color.ToDxColor(), 0);
         }
     }
 }

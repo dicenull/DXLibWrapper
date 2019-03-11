@@ -11,7 +11,7 @@ namespace Diagram
     {
         private void draw(Color color, bool isFill)
         {
-            int x = Origin.X, y = Origin.Y;
+            int x = TopLeft.X, y = TopLeft.Y;
             int w = Size.w, h = Size.h;
             
             DX.DrawBox(x, y, x + w, y + h, color.ToDxColor(), isFill ? 1:0);
