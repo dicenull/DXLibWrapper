@@ -26,5 +26,20 @@ namespace Diagram
         {
             draw(color, isFill: false);
         }
+        
+        public bool Intersects(Rectangle rect)
+        {
+            return Intersections.Intersects(this, rect);
+        }
+
+        public bool Intersects(Circle circle)
+        {
+            return Intersections.Intersects(this, circle);
+        }
+
+        public bool Intersects(Line line)
+        {
+            return Intersections.Intersects(this, line);
+        }
     }
 }
