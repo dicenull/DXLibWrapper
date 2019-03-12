@@ -14,6 +14,9 @@ namespace Diagram
         T MovedBy(int x, int y);
         T MovedBy(Vector2D vector);
 
+        /// <summary>
+        /// 図形の中心
+        /// </summary>
         Vector2D Center { get; }
     }
 }

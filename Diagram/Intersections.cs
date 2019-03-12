@@ -8,6 +8,11 @@ namespace Diagram
 {
     public static class Intersections
     {
+        static double Sign(Vector2D p1, Vector2D p2, Vector2D p3)
+        {
+            return (p1.X - p3.X) * (p2.Y - p3.Y) - (p2.X - p3.X) * (p1.Y - p3.Y);
+        }
+
         public static bool Intersects(Rectangle r1, Rectangle r2)
         {
             return r1.TopLeft.X < r2.BottomRight.X
@@ -110,32 +115,160 @@ namespace Diagram
 
         public static bool Intersects(Rectangle rect, Circle circle)
         {
-            return false;
+            var harfW = rect.Size.w * 0.5;
+            var harfH = rect.Size.h * 0.5;
+            var cX = Math.Abs(circle.Center.X - rect.TopLeft.X - harfW);
+            var cY = Math.Abs(circle.Center.Y - rect.TopLeft.Y - harfH);
+
+            if(cX > (harfW + circle.Center.Y) || cY > (harfH + circle.Radius))
+            {
+                return false;
+            }
+
+            if(cX <= (harfW) || cY <= (harfH))
+            {
+                return true;
+            }
+
+            var a = cX - harfW;
+            var b = cY - harfH;
+            var c = circle.Radius;
+
+            return (a * a) + (b * b) <= (c * c);
         }
 
         public static bool Intersects(Rectangle rect, Line line)
         {
-            return false;
+            if(Intersects(line.Begin, rect) || Intersects(line.End, rect))
+            {
+                return true;
+            }
+
+            Vector2D tl = rect.TopLeft,     tr = rect.TopRight,
+                     br = rect.BottomRight, bl = rect.BottomLeft;
+
+            return Intersects(line, new Line(tl, tr))
+                || Intersects(line, new Line(tr, br))
+                || Intersects(line, new Line(br, bl))
+                || Intersects(line, new Line(bl, tl));
         }
-        
+
+        private static bool Intersects(Vector2D vec, Rectangle rect)
+        {
+            return rect.TopLeft.X <= vec.X && vec.X < rect.BottomRight.X
+                && rect.TopLeft.Y <= vec.Y && vec.Y < rect.BottomRight.Y;
+        }
+
+        private static bool Intersects(Vector2D vec, Triangle triangle)
+        {
+            bool b1 = Sign(vec, triangle.Pos0, triangle.Pos1) < 0.0;
+            bool b2 = Sign(vec, triangle.Pos1, triangle.Pos2) < 0.0;
+            bool b3 = Sign(vec, triangle.Pos2, triangle.Pos0) < 0.0;
+
+            return ((b1 == b2) && (b2 == b3));
+        }
+
         public static bool Intersects(Rectangle rect, Triangle triangle)
         {
-            return false;
+            return Intersects(new Triangle(rect.TopLeft, rect.TopRight, rect.BottomLeft), triangle)
+                || Intersects(new Triangle(rect.BottomLeft, rect.TopRight, rect.BottomRight), triangle);
         }
 
         public static bool Intersects(Circle circle, Line line)
         {
-            return false;
+            var ab = line.End - line.Begin;
+            var ac = circle.Center - line.Begin;
+            var bc = circle.Center - line.End;
+
+            var e = ac.Dot(ab);
+            var rr = circle.Radius * circle.Radius;
+
+            if(e <= 0)
+            {
+                return ac.Dot(ac) <= rr;
+            }
+
+            double f = ab.Dot(ab);
+
+            if(e >= f)
+            {
+                return bc.Dot(bc) <= rr;
+            }
+
+            return ac.Dot(ac) - e * e / f <= rr;
         }
 
+        // 
+        // http://www.phatcode.net/articles.php?id=459
+        // 
         public static bool Intersects(Circle circle, Triangle triangle)
         {
+            int[] cx = new int[3];
+            int[] cy = new int[3];
+            int[] cSqr = new int[3];
+
+            for (int i = 0; i < 3; i++)
+            {
+                cx[i] = circle.Center.X - triangle.Pos[i].X;
+                cy[i] = circle.Center.Y - triangle.Pos[i].Y;
+                var radiusSqr = circle.Radius * circle.Radius;
+                cSqr[i] = cx[i] * cx[i] + cy[i] * cy[i] - radiusSqr;
+
+                if (cSqr[i] <= 0)
+                {
+                    return true;
+                }
+            }
+
+
+            Vector2D[] e =
+                {
+                triangle.Pos1 - triangle.Pos0,
+                triangle.Pos2 - triangle.Pos1,
+                triangle.Pos0 - triangle.Pos2
+                };
+
+            if (e[0].Y * cx[0] >= e[0].X * cy[0]
+                && e[1].Y * cx[1] >= e[1].X * cy[1]
+                && e[2].Y * cx[2] >= e[2].X * cy[2])
+            {
+                return true;
+            }
+
+
+            for(int i = 0;i < 3;i++)
+            {
+                var k = cx[i] * e[i].X + cy[i] * e[i].Y;
+
+                if (k > 0)
+                {
+                    var len = e[i].X * e[i].X + e[i].Y * e[i].Y;
+
+                    if ((k > len) && (cSqr[i] * len <= k * k))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            if(Intersects(circle.Center, triangle))
+            {
+                return true;
+            }
+
             return false;
         }
 
         public static bool Intersects(Line line, Triangle triangle)
         {
-            return false;
+            if(Intersects(line.Begin, triangle) || Intersects(line.End, triangle))
+            {
+                return true;
+            }
+
+            return Intersects(line, new Line(triangle.Pos0, triangle.Pos1))
+                || Intersects(line, new Line(triangle.Pos1, triangle.Pos2))
+                || Intersects(line, new Line(triangle.Pos2, triangle.Pos0));
         }
 
         public static bool Intersects(Triangle triangle, Rectangle rect)
