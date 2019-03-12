@@ -96,5 +96,28 @@ namespace Diagram
         {
             return $"{Pos0} {Pos1} {Pos2}";
         }
+
+
+        //  当たり判定
+
+        public bool Intersects(Rectangle rect)
+        {
+            return Intersections.Intersect(this, rect);
+        }
+
+        public bool Intersects(Triangle triangle)
+        {
+            return Intersections.Intersect(this, triangle);
+        }
+
+        public bool Intersects(Line line)
+        {
+            return Intersections.Intersect(this, line);
+        }
+
+        public bool Intersects(Circle circle)
+        {
+            return Intersections.Intersect(this, circle);
+        }
     }
 }
