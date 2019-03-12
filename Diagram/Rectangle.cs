@@ -257,7 +257,13 @@ namespace Diagram
         }
 
         #region 座標取得
-        public Vector2D TopRight => TopLeft;
+        public Vector2D TopRight
+        {
+            get
+            {
+                return new Vector2D(TopLeft.X + Size.w, TopLeft.Y);
+            }
+        }
 
         public Vector2D BottomLeft
         {

@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="CircleTest.cs" />
     <Compile Include="DiagramTestUtility.cs" />
+    <Compile Include="IntersectTest.cs" />
     <Compile Include="LineTest.cs" />
     <Compile Include="RectTest.cs" />
     <Compile Include="TriangleTest.cs" />
