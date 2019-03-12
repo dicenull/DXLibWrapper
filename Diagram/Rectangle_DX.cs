@@ -29,17 +29,17 @@ namespace Diagram
         
         public bool Intersects(Rectangle rect)
         {
-            return Intersections.Intersects(this, rect);
+            return Intersections.Intersect(this, rect);
         }
 
         public bool Intersects(Circle circle)
         {
-            return Intersections.Intersects(this, circle);
+            return Intersections.Intersect(this, circle);
         }
 
         public bool Intersects(Line line)
         {
-            return Intersections.Intersects(this, line);
+            return Intersections.Intersect(this, line);
         }
     }
 }

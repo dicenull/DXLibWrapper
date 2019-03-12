@@ -13,7 +13,7 @@ namespace Diagram
             return (p1.X - p3.X) * (p2.Y - p3.Y) - (p2.X - p3.X) * (p1.Y - p3.Y);
         }
 
-        public static bool Intersects(Rectangle r1, Rectangle r2)
+        public static bool Intersect(Rectangle r1, Rectangle r2)
         {
             return r1.TopLeft.X < r2.BottomRight.X
                 && r2.TopLeft.X < r1.BottomRight.X
@@ -21,7 +21,7 @@ namespace Diagram
                 && r2.TopLeft.Y < r1.BottomRight.Y;
         }
 
-        public static bool Intersects(Circle c1, Circle c2)
+        public static bool Intersect(Circle c1, Circle c2)
         {
             var dx = c1.Center.X - c2.Center.X;
             var dy = c1.Center.Y - c2.Center.Y;
@@ -33,7 +33,7 @@ namespace Diagram
         //
         // http://www5d.biglobe.ne.jp/~tomoya03/shtml/algorithm/Intersection.htm
         //
-        public static bool Intersects(Line l1, Line l2)
+        public static bool Intersect(Line l1, Line l2)
         {
             var ta = (l2.Begin.X - l2.End.X) * (l1.Begin.Y - l2.Begin.Y) + (l2.Begin.Y - l2.End.Y) * (l2.Begin.X - l1.Begin.X);
             var tb = (l2.Begin.X - l2.End.X) * (l1.End.Y - l2.Begin.Y) + (l2.Begin.Y - l2.End.Y) * (l2.Begin.X - l1.End.X);
@@ -46,7 +46,7 @@ namespace Diagram
         // 
         // http://marupeke296.com/COL_2D_TriTri.html
         //
-        public static bool Intersects(Triangle tri1, Triangle tri2)
+        public static bool Intersect(Triangle tri1, Triangle tri2)
         {
             int[] other =  { 1, 2, 0 };
             int[] pindex = { 1, 2, 0, 1 };
@@ -113,7 +113,7 @@ namespace Diagram
             return true;
         }
 
-        public static bool Intersects(Rectangle rect, Circle circle)
+        public static bool Intersect(Rectangle rect, Circle circle)
         {
             var harfW = rect.Size.w * 0.5;
             var harfH = rect.Size.h * 0.5;
@@ -137,9 +137,9 @@ namespace Diagram
             return (a * a) + (b * b) <= (c * c);
         }
 
-        public static bool Intersects(Rectangle rect, Line line)
+        public static bool Intersect(Rectangle rect, Line line)
         {
-            if(Intersects(line.Begin, rect) || Intersects(line.End, rect))
+            if(Intersect(line.Begin, rect) || Intersect(line.End, rect))
             {
                 return true;
             }
@@ -147,19 +147,19 @@ namespace Diagram
             Vector2D tl = rect.TopLeft,     tr = rect.TopRight,
                      br = rect.BottomRight, bl = rect.BottomLeft;
 
-            return Intersects(line, new Line(tl, tr))
-                || Intersects(line, new Line(tr, br))
-                || Intersects(line, new Line(br, bl))
-                || Intersects(line, new Line(bl, tl));
+            return Intersect(line, new Line(tl, tr))
+                || Intersect(line, new Line(tr, br))
+                || Intersect(line, new Line(br, bl))
+                || Intersect(line, new Line(bl, tl));
         }
 
-        private static bool Intersects(Vector2D vec, Rectangle rect)
+        private static bool Intersect(Vector2D vec, Rectangle rect)
         {
             return rect.TopLeft.X <= vec.X && vec.X < rect.BottomRight.X
                 && rect.TopLeft.Y <= vec.Y && vec.Y < rect.BottomRight.Y;
         }
 
-        private static bool Intersects(Vector2D vec, Triangle triangle)
+        private static bool Intersect(Vector2D vec, Triangle triangle)
         {
             bool b1 = Sign(vec, triangle.Pos0, triangle.Pos1) < 0.0;
             bool b2 = Sign(vec, triangle.Pos1, triangle.Pos2) < 0.0;
@@ -168,13 +168,13 @@ namespace Diagram
             return ((b1 == b2) && (b2 == b3));
         }
 
-        public static bool Intersects(Rectangle rect, Triangle triangle)
+        public static bool Intersect(Rectangle rect, Triangle triangle)
         {
-            return Intersects(new Triangle(rect.TopLeft, rect.TopRight, rect.BottomLeft), triangle)
-                || Intersects(new Triangle(rect.BottomLeft, rect.TopRight, rect.BottomRight), triangle);
+            return Intersect(new Triangle(rect.TopLeft, rect.TopRight, rect.BottomLeft), triangle)
+                || Intersect(new Triangle(rect.BottomLeft, rect.TopRight, rect.BottomRight), triangle);
         }
 
-        public static bool Intersects(Circle circle, Line line)
+        public static bool Intersect(Circle circle, Line line)
         {
             var ab = line.End - line.Begin;
             var ac = circle.Center - line.Begin;
@@ -201,7 +201,7 @@ namespace Diagram
         // 
         // http://www.phatcode.net/articles.php?id=459
         // 
-        public static bool Intersects(Circle circle, Triangle triangle)
+        public static bool Intersect(Circle circle, Triangle triangle)
         {
             int[] cx = new int[3];
             int[] cy = new int[3];
@@ -251,7 +251,7 @@ namespace Diagram
                 }
             }
 
-            if(Intersects(circle.Center, triangle))
+            if(Intersect(circle.Center, triangle))
             {
                 return true;
             }
@@ -259,46 +259,46 @@ namespace Diagram
             return false;
         }
 
-        public static bool Intersects(Line line, Triangle triangle)
+        public static bool Intersect(Line line, Triangle triangle)
         {
-            if(Intersects(line.Begin, triangle) || Intersects(line.End, triangle))
+            if(Intersect(line.Begin, triangle) || Intersect(line.End, triangle))
             {
                 return true;
             }
 
-            return Intersects(line, new Line(triangle.Pos0, triangle.Pos1))
-                || Intersects(line, new Line(triangle.Pos1, triangle.Pos2))
-                || Intersects(line, new Line(triangle.Pos2, triangle.Pos0));
+            return Intersect(line, new Line(triangle.Pos0, triangle.Pos1))
+                || Intersect(line, new Line(triangle.Pos1, triangle.Pos2))
+                || Intersect(line, new Line(triangle.Pos2, triangle.Pos0));
         }
 
-        public static bool Intersects(Triangle triangle, Rectangle rect)
+        public static bool Intersect(Triangle triangle, Rectangle rect)
         {
-            return Intersects(rect, triangle);
+            return Intersect(rect, triangle);
         }
 
-        public static bool Intersects(Line line, Rectangle rect)
+        public static bool Intersect(Line line, Rectangle rect)
         {
-            return Intersects(rect, line);
+            return Intersect(rect, line);
         }
 
-        public static bool Intersects(Circle circle, Rectangle rect)
+        public static bool Intersect(Circle circle, Rectangle rect)
         {
-            return Intersects(rect, circle);
+            return Intersect(rect, circle);
         }
 
-        public static bool Intersects(Line line, Circle circle)
+        public static bool Intersect(Line line, Circle circle)
         {
-            return Intersects(circle, line);
+            return Intersect(circle, line);
         }
 
-        public static bool Intersects(Triangle triangle, Circle circle)
+        public static bool Intersect(Triangle triangle, Circle circle)
         {
-            return Intersects(circle, triangle);
+            return Intersect(circle, triangle);
         }
 
-        public static bool Intersects(Triangle triangle, Line line)
+        public static bool Intersect(Triangle triangle, Line line)
         {
-            return Intersects(line, triangle);
+            return Intersect(line, triangle);
         }
     }
 }
