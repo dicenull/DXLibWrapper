@@ -79,7 +79,7 @@ namespace Diagram
                     var s2Min = Dot(sepVec, tb.Pos[0]);
                     var s2Max = Dot(sepVec, tb.Pos[1]);
 
-                    if(s2Min > s1Max)
+                    if(s2Min > s2Max)
                     {
                         // swap
                         var tmp = s2Min;
@@ -93,7 +93,7 @@ namespace Diagram
                     {
                         s2Min = d3;
                     }
-                    else if(d3 < s2Max)
+                    else if(d3 > s2Max)
                     {
                         s2Max = d3;
                     }
