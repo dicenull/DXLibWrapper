@@ -12,6 +12,11 @@ namespace Diagram
         public Vector2D Pos1 { get; set; }
         public Vector2D Pos2 { get; set; }
 
+        public Vector2D[] Pos
+        {
+            get { return new[] { Pos0, Pos1, Pos2 }; }
+        }
+
         public Vector2D Center
         {
             get

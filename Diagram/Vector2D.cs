@@ -76,6 +76,11 @@ namespace Diagram
             return new Vector2D(vector1.X / vector2.X, vector1.Y / vector2.Y);
         }
 
+        public (double X, double Y) Normalized()
+        {
+            return (X / Length(), Y / Length());
+        }
+
         public static bool operator ==(Vector2D vector1, Vector2D vector2)
         {
             return vector1.X == vector2.X && vector1.Y == vector2.Y;
