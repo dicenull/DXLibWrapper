@@ -120,7 +120,7 @@ namespace Diagram
             var cX = Math.Abs(circle.Center.X - rect.TopLeft.X - harfW);
             var cY = Math.Abs(circle.Center.Y - rect.TopLeft.Y - harfH);
 
-            if(cX > (harfW + circle.Center.Y) || cY > (harfH + circle.Radius))
+            if(cX > (harfW + circle.Radius) || cY > (harfH + circle.Radius))
             {
                 return false;
             }
