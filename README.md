@@ -32,6 +32,8 @@ while (DX.ProcessMessage() != -1)
 
     DX.ScreenFlip();
 }
+
+DX.DxLib_End();
 ```
 
 DXLibWrapper使用
