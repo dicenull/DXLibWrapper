@@ -23,11 +23,13 @@ namespace DxLibUtilities
 
         public bool Update()
         {
+            
             if(DX.ProcessMessage() == -1)
             {
                 DX.DxLib_End();
                 return false;
             }
+            InputManager.Update();
 
             currentScene.Draw();
             var nextScene = currentScene.Update();

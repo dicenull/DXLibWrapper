@@ -14,6 +14,7 @@ namespace DXLibWrapper
     {
         private Rectangle rect;
         private Line line;
+        private Color color = Color.Pink;
 
         public MainScene()
             : base()
@@ -24,7 +25,7 @@ namespace DXLibWrapper
 
         protected override void draw()
         {
-            rect.Draw(Color.Gray);
+            rect.Draw(color);
             rect.DrawFrame(Color.Red);
 
             line.Draw(Color.White);
@@ -32,10 +33,23 @@ namespace DXLibWrapper
 
         public override SceneBase Update()
         {
-            rect.MoveBy(x: 1, y: 0);
-
             line.MoveBy(1, 1);
             line.End += new Vector2D(0, 1);
+
+            if(InputManager.Key.IsDown(ConsoleKey.B))
+            {
+                color = Color.Blue;
+            }
+            else if (InputManager.Key.IsPressed(ConsoleKey.B))
+            {
+                color = Color.Purple;
+            }
+
+            if (InputManager.Mouse.IsPressed(MouseButton.Right))
+            {
+                color = Color.Red;
+            }
+
 
             return this;
         }
