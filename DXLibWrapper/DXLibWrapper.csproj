@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{ACF1671A-E009-4613-8A49-6C43F0FA3EF7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>DiceVsYosanoReMake</RootNamespace>
-    <AssemblyName>DiceVsYosanoReMake</AssemblyName>
+    <RootNamespace>DXLibWrapper</RootNamespace>
+    <AssemblyName>DXLibWrapper</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

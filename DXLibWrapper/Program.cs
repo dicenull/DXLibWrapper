@@ -8,7 +8,7 @@ using DxLibUtilities;
 using System.Drawing;
 using Diagram;
 
-namespace DiceVsYosanoReMake
+namespace DXLibWrapper
 {
     class Program
     {

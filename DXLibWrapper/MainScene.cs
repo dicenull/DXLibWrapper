@@ -8,7 +8,7 @@ using System.Drawing;
 using Diagram;
 using Rectangle = Diagram.Rectangle;
 
-namespace DiceVsYosanoReMake
+namespace DXLibWrapper
 {
     class MainScene : SceneBase
     {
