@@ -57,8 +57,6 @@
     <Compile Include="Rectangle_DX.cs" />
     <Compile Include="Triangle.cs" />
     <Compile Include="Triangle_DX.cs" />
-    <Compile Include="Vector2D.cs" />
-    <Compile Include="Vector2DExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DxLibrary\DxLibrary.csproj">

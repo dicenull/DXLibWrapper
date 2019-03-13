@@ -69,6 +69,10 @@
       <Project>{9eba38a3-bf2e-4b35-80e1-9372fdb5bb59}</Project>
       <Name>DxLibUtilities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{FD6F17D8-4A94-4645-84B6-5810BC9D90EB}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

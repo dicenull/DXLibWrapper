@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExpressionUtility.cs" />
+    <Compile Include="Vector2D.cs" />
+    <Compile Include="Vector2DExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
