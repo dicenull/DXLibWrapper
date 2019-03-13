@@ -244,7 +244,7 @@ namespace Diagram
                 {
                     var len = e[i].X * e[i].X + e[i].Y * e[i].Y;
 
-                    if ((k > len) && (cSqr[i] * len <= k * k))
+                    if ((k < len) && (cSqr[i] * len <= k * k))
                     {
                         return true;
                     }
