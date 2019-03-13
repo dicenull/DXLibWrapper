@@ -6,28 +6,28 @@ using System.Threading.Tasks;
 
 namespace DxLibUtilities
 {
-    interface IInput
+    interface IInput<T>
     {
         void Update();
 
         /// <summary>
         /// 押され始めたか
         /// </summary>
-        bool IsDown(int code);
+        bool IsDown(T code);
 
         /// <summary>
         /// 押されているか
         /// </summary>
-        bool IsPressed(int code);
+        bool IsPressed(T code);
 
         /// <summary>
         /// 離され始めたか
         /// </summary>
-        bool IsRelease(int code);
+        bool IsRelease(T code);
 
         /// <summary>
         /// 離されているか
         /// </summary>
-        bool IsUp(int code);
+        bool IsUp(T code);
     }
 }

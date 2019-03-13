@@ -1,37 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DxLibDLL;
 
 namespace DxLibUtilities
 {
-    public class Key : IInput
+    public class Key : IInput<ConsoleKey>
     {
         public Key()
         {
             Update();
         }
 
-        public bool IsDown(int code)
+        public bool IsDown(ConsoleKey key)
         {
-            return keys[code][prev] == 0 && keys[code][flip] != 0;
+            return keys[prev][key.ToCode()] == 0 && keys[flip][key.ToCode()] != 0;
         }
 
-        public bool IsPressed(int code)
+        public bool IsPressed(ConsoleKey key)
         {
-            return keys[code][flip] != 0;
+            return keys[flip][key.ToCode()] != 0;
         }
 
-        public bool IsRelease(int code)
+        public bool IsRelease(ConsoleKey key)
         {
-            return keys[code][flip] == 0;
+            return keys[flip][key.ToCode()] == 0;
         }
 
-        public bool IsUp(int code)
+        public bool IsUp(ConsoleKey key)
         {
-            return keys[code][prev] != 0 && keys[code][flip] == 0;
+            return keys[prev][key.ToCode()] != 0 && keys[flip][key.ToCode()] == 0;
         }
 
         public void Update()
