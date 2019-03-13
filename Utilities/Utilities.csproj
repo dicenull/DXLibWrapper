@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExpressionUtility.cs" />
+    <Compile Include="Location.cs" />
     <Compile Include="Vector2D.cs" />
     <Compile Include="Vector2DExtensions.cs" />
   </ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using System;
+using Diagram;
 using DxLibDLL;
 
 namespace DxLibUtilities
@@ -37,6 +38,15 @@ namespace DxLibUtilities
             flip = 1 - flip;
 
             mouseState[flip] = DX.GetMouseInput();
+        }
+
+        public Vector2D GetPosition()
+        {
+            int x, y;
+
+            DX.GetMousePoint(out x, out y);
+
+            return new Vector2D(x, y);
         }
 
         private int flip = 0;
