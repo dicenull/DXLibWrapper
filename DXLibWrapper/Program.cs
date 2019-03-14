@@ -7,17 +7,19 @@ using DxLibDLL;
 using DxLibUtilities;
 using System.Drawing;
 using Diagram;
+using DXLibWrapper;
 
-namespace DXLibWrapper
-{
-    class Program
+public partial class Program
+{ 
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            var manager = new SceneManager(new MainScene());
-            
-            while(manager.Update())
-            { }
-        }
+        new Program().Start();
+    }
+
+    public void Run()
+    {
+        var manager = new SceneManager(new MainScene());
+
+        while (manager.Update()) { }
     }
 }

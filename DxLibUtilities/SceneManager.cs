@@ -13,22 +13,16 @@ namespace DxLibUtilities
         
         public SceneManager(SceneBase scene)
         {
-            DX.SetDrawScreen(DX.DX_SCREEN_BACK);
-            DX.ChangeWindowMode(DX.TRUE);
-
-            DX.DxLib_Init();
-
             currentScene = scene;
         }
 
         public bool Update()
         {
-            
             if(DX.ProcessMessage() == -1)
             {
-                DX.DxLib_End();
                 return false;
             }
+
             InputManager.Update();
 
             currentScene.Draw();
@@ -36,7 +30,6 @@ namespace DxLibUtilities
 
             if(nextScene == null)
             {
-                DX.DxLib_End();
                 return false;
             }
 
