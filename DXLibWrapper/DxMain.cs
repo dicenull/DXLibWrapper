@@ -9,7 +9,11 @@ namespace DXLibWrapper
             DX.SetDrawScreen(DX.DX_SCREEN_BACK);
             DX.ChangeWindowMode(DX.TRUE);
 
-            DX.DxLib_Init();
+            var status = DX.DxLib_Init();
+            if(status == -1)
+            {
+                return;
+            }
 
             new Program().Run();
 
