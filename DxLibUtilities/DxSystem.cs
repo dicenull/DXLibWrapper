@@ -21,7 +21,7 @@ namespace DxLibUtilities
                 return false;
             }
 
-            InputManager.Update();
+            Input.Update();
 
             return true;
         }

@@ -36,16 +36,16 @@ namespace DXLibWrapper
             line.MoveBy(1, 1);
             line.End += new Vector2D(0, 1);
 
-            if(InputManager.Key.IsDown(ConsoleKey.B))
+            if(Input.Key.IsDown(ConsoleKey.B))
             {
                 color = Color.Blue;
             }
-            else if (InputManager.Key.IsPressed(ConsoleKey.B))
+            else if (Input.Key.IsPressed(ConsoleKey.B))
             {
                 color = Color.Purple;
             }
 
-            if (InputManager.Mouse.IsPressed(MouseButton.Right))
+            if (Input.Mouse.IsPressed(MouseButton.Right))
             {
                 color = Color.Red;
             }

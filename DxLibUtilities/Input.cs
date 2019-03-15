@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DxLibUtilities
 {
-    public static class InputManager
+    public static class Input
     {
         public static Key Key { get; } = new Key();
 
