@@ -15,6 +15,9 @@ public class Program
     {
         var manager = new SceneManager(new MainScene());
 
-        while (manager.Update()) { }
+        while (DxSystem.Update())
+        {
+            manager.Update();
+        }
     }
 }
