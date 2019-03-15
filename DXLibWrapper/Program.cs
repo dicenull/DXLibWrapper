@@ -9,13 +9,8 @@ using System.Drawing;
 using Diagram;
 using DXLibWrapper;
 
-public partial class Program
+public class Program
 { 
-    static void Main(string[] args)
-    {
-        new Program().Start();
-    }
-
     public void Run()
     {
         var manager = new SceneManager(new MainScene());
