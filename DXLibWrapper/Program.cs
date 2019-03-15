@@ -1,23 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DxLibDLL;
-using DxLibUtilities;
-using System.Drawing;
-using Diagram;
+﻿using DxLibUtilities;
 using DXLibWrapper;
 
 public class Program
 { 
     public void Run()
     {
-        var manager = new SceneManager(new MainScene());
+        var manager = new SceneManager(startScene : new MainScene());
 
         while (DxSystem.Update())
         {
-            manager.Update();
+            manager.UpdateAndDraw();
         }
     }
 }

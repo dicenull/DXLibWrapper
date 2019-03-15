@@ -16,7 +16,7 @@ namespace DxLibUtilities
             currentScene = startScene;
         }
 
-        public void Update()
+        public void UpdateAndDraw()
         {
             currentScene.Draw();
             var nextScene = currentScene.Update();
