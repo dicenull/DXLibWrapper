@@ -1,6 +1,5 @@
-﻿using System;
-using Diagram;
-using DxLibDLL;
+﻿using DxLibDLL;
+using Utilities;
 
 namespace DxLibUtilities
 {
