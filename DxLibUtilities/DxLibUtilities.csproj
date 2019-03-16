@@ -57,6 +57,7 @@
     <Compile Include="DxSystem.cs" />
     <Compile Include="Text.cs" />
     <Compile Include="Texture.cs" />
+    <Compile Include="Window.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DxLibrary\DxLibrary.csproj">
