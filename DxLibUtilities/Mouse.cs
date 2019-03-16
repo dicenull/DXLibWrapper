@@ -10,6 +10,22 @@ namespace DxLibUtilities
             Update();
         }
 
+        public Vector2D Point
+        {
+            get
+            {
+                int x, y;
+                DX.GetMousePoint(out x, out y);
+
+                return new Vector2D(x, y);
+            }
+
+            set
+            {
+                DX.SetMousePoint(value.X, value.Y);
+            }
+        }
+
         public bool IsDown(MouseButton button)
         {
             return (mouseState[prev] & button.ToCode()) == 0
