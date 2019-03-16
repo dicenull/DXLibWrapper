@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Utilities;
 
-namespace Diagram
+namespace Utilities
 {
     public struct Vector2D
     {
