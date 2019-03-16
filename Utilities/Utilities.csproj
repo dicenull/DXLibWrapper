@@ -40,8 +40,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Color.cs" />
     <Compile Include="ExpressionUtility.cs" />
     <Compile Include="Location.cs" />
+    <Compile Include="Palette.cs" />
     <Compile Include="Vector2D.cs" />
     <Compile Include="Vector2DExtensions.cs" />
   </ItemGroup>

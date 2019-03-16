@@ -1,5 +1,4 @@
-﻿using Diagram;
-using System.Drawing;
+﻿using Utilities;
 using DxLibDLL;
 using DxLibUtilities;
 

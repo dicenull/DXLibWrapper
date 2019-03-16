@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DxLibUtilities;
-using System.Drawing;
+using Utilities;
 using Diagram;
 using Rectangle = Diagram.Rectangle;
 
@@ -14,7 +10,7 @@ namespace DXLibWrapper
     {
         private Rectangle rect;
         private Line line;
-        private Color color = Color.Pink;
+        private Color color = Palette.Pink;
 
         public MainScene()
             : base()
@@ -26,9 +22,9 @@ namespace DXLibWrapper
         protected override void draw()
         {
             rect.Draw(color);
-            rect.DrawFrame(Color.Red);
+            rect.DrawFrame(Palette.Red);
 
-            line.Draw(Color.White);
+            line.Draw(Palette.White);
         }
 
         public override SceneBase Update()
@@ -38,16 +34,16 @@ namespace DXLibWrapper
 
             if(Input.Key.IsDown(ConsoleKey.B))
             {
-                color = Color.Blue;
+                color = Palette.Blue;
             }
             else if (Input.Key.IsPressed(ConsoleKey.B))
             {
-                color = Color.Purple;
+                color = Palette.Purple;
             }
 
             if (Input.Mouse.IsPressed(MouseButton.Right))
             {
-                color = Color.Red;
+                color = Palette.Red;
             }
 
 
