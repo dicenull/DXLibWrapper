@@ -56,6 +56,7 @@
     <Compile Include="SceneManager.cs" />
     <Compile Include="DxSystem.cs" />
     <Compile Include="Text.cs" />
+    <Compile Include="Texture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DxLibrary\DxLibrary.csproj">
