@@ -1,21 +1,40 @@
 ﻿using System;
 using Utilities;
 using DxLibDLL;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DxLibUtilities
 {
     public class Texture
     {
+        public static IEnumerable<Texture> LoadDivision(string path, int w, int h)
+        {
+            (int w, int h) size;
+            DX.GetGraphSize(DX.LoadGraph(path), out size.w, out size.h);
+
+            int[] handles = new int[w * h];
+            DX.LoadDivGraph(path, w * h, w, h, size.w / w, size.h / h, handles);
+
+            foreach(var handle in handles)
+            {
+                yield return new Texture(handle);
+            }
+        }
+
         private int handle;
-        private double degree = 360;
+        private double degree = 0;
         private (double w, double h) scale = (1, 1);
 
         public Vector2D Size { get; }
 
 
         public Texture(string path)
+            : this(DX.LoadGraph(path)) { }
+
+        public Texture(int handle)
         {
-            handle = DX.LoadGraph(path);
+            this.handle = handle;
 
             int w, h;
             DX.GetGraphSize(handle, out w, out h);
@@ -78,5 +97,6 @@ namespace DxLibUtilities
 
             return this;
         }
+
     }
 }
