@@ -13,48 +13,37 @@ C#版DXライブラリ( https://dxlib.xsrv.jp/ )をより使いやすくしま�
 ### 例
 DXライブラリのみ
 ```csharp
-DX.DxLib_Init();
-
-DX.POINTDATA rectPos;
-(int w, int h) size = (50, 100);
-rectPos.x = 0;
-rectPos.y = 0;
-rectPos.color = DX.GetColor(0, 128, 0);
-
-while (DX.ProcessMessage() != -1)
+static void Main(string[] args)
 {
+  DX.ChangeWindowMode(DX.TRUE);
+  DX.SetDrawScreen(DX.DX_SCREEN_BACK);
+
+  DX.DxLib_Init();
+
+  while (DX.ProcessMessage() != -1)
+  {
     DX.ClearDrawScreen();
 
-    DX.DrawBox(rectPos.x, rectPos.y, rectPos.x + size.w, rectPos.y + size.h, rectPos.color, 1);
-
-    rectPos.x += 2;
-    rectPos.y++;
-
+    int x, y;
+    DX.GetMousePoint(out x, out y);
+    DX.DrawCircle(x, y, 10, DX.GetColor(0, 0, 255), DX.TRUE);
+                
     DX.ScreenFlip();
-}
+  }
 
-DX.DxLib_End();
+  DX.DxLib_End();
+}
 ```
 
 DXLibWrapper使用
 ```csharp
-
-DX.DxLib_Init();
-
-var rect = new Rectangle(point: (0, 0), size: (50, 100));
-            
-while (DX.ProcessMessage() != -1)
+public void Run()
 {
-    DX.ClearDrawScreen();
-
-    rect.Draw(Color.Green);
-
-    rect.MoveBy(x: 2, y: 1);
-                
-    DX.ScreenFlip();
+  while (DxSystem.Update())
+  {
+    new Circle(Input.Mouse.Point, 10).Draw(Palette.Blue);
+  }
 }
-
-DX.DxLib_End();
 ```
 
 ### 対応図形
@@ -65,7 +54,7 @@ DX.DxLib_End();
 
 ## シーン遷移
 描画部と処理部に分かれているシーンを使ってシーン遷移ができます。  
-複数シーンを管理するマネージャクラスもあります。
+複数シーンを管理するマネージャクラスがあり、シーン間のデータ共有も可能です。
 
 ## 文字列描画
 文字の描画ができます。  
@@ -77,3 +66,9 @@ DX.DxLib_End();
 ## 画像描画
 画像を読み込んで描画することができます。  
 画像の回転、拡大縮小もできます。
+
+## 音再生
+音声ファイルを読み込み音の再生ができます。
+
+## ウィンドウ
+ウィンドウサイズやタイトルなどを調整することができます。
