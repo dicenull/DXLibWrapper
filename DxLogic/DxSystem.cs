@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Diagram;
 using DxLibDLL;
 
-namespace DxLibUtilities
+namespace DxLogic
 {
     public static class DxSystem
     {

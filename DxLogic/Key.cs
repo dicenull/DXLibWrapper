@@ -1,7 +1,7 @@
 ﻿using System;
 using DxLibDLL;
 
-namespace DxLibUtilities
+namespace DxLogic
 {
     public class Key : IInput<ConsoleKey>
     {

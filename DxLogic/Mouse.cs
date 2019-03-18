@@ -1,7 +1,7 @@
 ﻿using DxLibDLL;
 using Utilities;
 
-namespace DxLibUtilities
+namespace DxLogic
 {
     public class Mouse : IInput<MouseButton>
     {
