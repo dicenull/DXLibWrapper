@@ -2,7 +2,7 @@
 
 namespace Diagram
 {
-    public partial class Circle : IDiagram<Circle>
+    public partial class Circle : IDiagram
     {
         /// <summary>
         /// 中心座標
@@ -49,12 +49,12 @@ namespace Diagram
             return !(c1 == c2);
         }
         
-        public Circle MovedBy(int x, int y)
+        public IDiagram MovedBy(int x, int y)
         {
             return new Circle(Center + (x, y), Radius);
         }
 
-        public Circle MovedBy(Vector2D vector)
+        public IDiagram MovedBy(Vector2D vector)
         {
             return MovedBy(vector.X, vector.Y);
         }

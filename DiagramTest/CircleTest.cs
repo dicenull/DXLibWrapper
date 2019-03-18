@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Diagram;
+using Utilities;
 
 namespace DiagramTest
 {
@@ -16,7 +17,7 @@ namespace DiagramTest
         [TestMethod]
         public void 移動()
         {
-            DiagramTestUtility<Circle>.Move(new Circle(1, -2, 3));
+            DiagramTestUtility.Move(new Circle(1, -2, 3));
         }
     }
 }

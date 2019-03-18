@@ -11,7 +11,7 @@ namespace Diagram
     /// <summary>
     /// 四角形クラスロジック部
     /// </summary>
-    public partial class Rectangle : IDiagram<Rectangle>
+    public partial class Rectangle : IDiagram
     {
         /// <summary>
         /// 長方形の大きさ
@@ -135,12 +135,12 @@ namespace Diagram
             return !(r1 == r2);
         }
 
-        public Rectangle MovedBy(int x, int y)
+        public IDiagram MovedBy(int x, int y)
         {
             return new Rectangle(TopLeft.MovedBy(x, y), Size);
         }
 
-        public Rectangle MovedBy(Vector2D v)
+        public IDiagram MovedBy(Vector2D v)
         {
             return MovedBy(v.X, v.Y);
         }

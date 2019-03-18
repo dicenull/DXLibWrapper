@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Diagram;
+using Utilities;
 
 namespace DiagramTest
 {
@@ -18,7 +19,7 @@ namespace DiagramTest
         [TestMethod]
         public void 移動()
         {
-            DiagramTestUtility<Line>.Move(new Line(1, 0, -1, 2));
+            DiagramTestUtility.Move(new Line(1, 0, -1, 2));
         }
 
         [TestMethod]

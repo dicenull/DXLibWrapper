@@ -2,7 +2,7 @@
 
 namespace Diagram
 {
-    public partial class Triangle : IDiagram<Triangle>
+    public partial class Triangle : IDiagram
     {
         public Vector2D Pos0 { get; set; }
         public Vector2D Pos1 { get; set; }
@@ -49,12 +49,12 @@ namespace Diagram
             MoveBy(vector.X, vector.Y);
         }
 
-        public Triangle MovedBy(int x, int y)
+        public IDiagram MovedBy(int x, int y)
         {
             return new Triangle(Pos0.MovedBy(x, y), Pos1.MovedBy(x, y), Pos2.MovedBy(x, y));
         }
 
-        public Triangle MovedBy(Vector2D vector)
+        public IDiagram MovedBy(Vector2D vector)
         {
             return MovedBy(vector.X, vector.Y);
         }

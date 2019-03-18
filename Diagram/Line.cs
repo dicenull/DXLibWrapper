@@ -2,7 +2,7 @@
 
 namespace Diagram
 {
-    public partial class Line : IDiagram<Line>
+    public partial class Line : IDiagram
     {
         /// <summary>
         /// 開始点
@@ -55,12 +55,12 @@ namespace Diagram
         }
         #endregion
 
-        public Line MovedBy(int x, int y)
+        public IDiagram MovedBy(int x, int y)
         {
             return new Line(Begin.MovedBy(x, y), End.MovedBy(x, y));
         }
 
-        public Line MovedBy(Vector2D vector)
+        public IDiagram MovedBy(Vector2D vector)
         {
             return MovedBy(vector.X, vector.Y);
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Diagram;
+using Utilities;
 
 namespace DiagramTest
 {
@@ -19,7 +20,7 @@ namespace DiagramTest
         [TestMethod]
         public void 移動()
         {
-            DiagramTestUtility<Triangle>.Move(new Triangle(-2, 1, 0, 3, 2, -1));
+            DiagramTestUtility.Move(new Triangle(-2, 1, 0, 3, 2, -1));
         }
     }
 }

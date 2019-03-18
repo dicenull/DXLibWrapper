@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Diagram;
+using Utilities;
 
 namespace DiagramTest
 {
@@ -80,7 +81,7 @@ namespace DiagramTest
         [TestMethod]
         public void 移動()
         {
-            DiagramTestUtility<Rect>.Move(new Rect(size: (3, 5)));
+            DiagramTestUtility.Move(new Rect(size: (3, 5)));
         }
 
         [TestMethod]
