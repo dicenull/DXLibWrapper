@@ -1,15 +1,16 @@
 ﻿using DxLibUtilities;
-using DXLibWrapper;
+using DxLibDLL;
+using DxLogic;
+using Diagram;
+using Utilities;
 
 public class Program
 { 
     public void Run()
     {
-        var manager = new SceneManager<Data>(startScene : new MainScene());
-
         while (DxSystem.Update())
         {
-            manager.UpdateAndDraw();
+            new Circle(Input.Mouse.Point, 10).Draw(Palette.Blue);
         }
     }
 }
