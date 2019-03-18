@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Diagram;
 using DxLibDLL;
 
 namespace DxLibUtilities
 {
     public static class DxSystem
     {
+        private static int flip = 1;
         public static bool Update()
         {
             if (DX.ProcessMessage() == -1)
@@ -16,12 +18,17 @@ namespace DxLibUtilities
                 return false;
             }
 
+            DX.ClearDrawScreen();
+            DxDrawer.Instance.Draw();
+
             if(!canUpdate)
             {
                 return false;
             }
 
             Input.Update();
+
+            DX.ScreenFlip();
 
             return true;
         }
