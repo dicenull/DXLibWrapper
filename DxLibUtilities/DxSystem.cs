@@ -26,11 +26,19 @@ namespace DxLibUtilities
             return true;
         }
 
+        /// <summary>
+        /// 指定した時間待つ
+        /// </summary>
+        /// <param name="ms">待つ時間[ミリ秒]</param>
+        public static void Sleep(int ms)
+        {
+            DX.WaitTimer(ms);
+        }
+        
         public static void Exit()
         {
             canUpdate = false;
         }
-
         private static bool canUpdate = true;
     }
 }

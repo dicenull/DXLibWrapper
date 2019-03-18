@@ -18,7 +18,7 @@ namespace DXLibWrapper
             }
 
             new Program().Run();
-
+            
             DX.DxLib_End();
         }
     }
