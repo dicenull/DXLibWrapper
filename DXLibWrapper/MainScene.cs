@@ -6,7 +6,7 @@ using Rectangle = Diagram.Rectangle;
 
 namespace DXLibWrapper
 {
-    class MainScene : SceneBase
+    class MainScene : SceneBase<Data>
     {
         private Rectangle rect;
         private Line line;
@@ -17,6 +17,8 @@ namespace DXLibWrapper
         {
             rect = new Rectangle(point: (10, 5), size: (30, 30));
             line = new Line(0, 0, 30, 100);
+
+            Data.X = 1;
         }
 
         protected override void draw()
@@ -27,7 +29,7 @@ namespace DXLibWrapper
             line.Draw(Palette.White);
         }
 
-        public override SceneBase Update()
+        public override SceneBase<Data> Update()
         {
             line.MoveBy(1, 1);
             line.End += new Vector2D(0, 1);

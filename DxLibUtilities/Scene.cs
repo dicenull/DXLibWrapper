@@ -7,9 +7,11 @@ using DxLibDLL;
 
 namespace DxLibUtilities
 {
-    public abstract class SceneBase
+    public abstract class SceneBase<T>
     {
-        public abstract SceneBase Update();
+        protected static T Data;
+
+        public abstract SceneBase<T> Update();
 
         protected abstract void draw();
         

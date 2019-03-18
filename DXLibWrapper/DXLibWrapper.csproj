@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="DxMain.cs" />
     <Compile Include="MainScene.cs" />
+    <Compile Include="MyData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

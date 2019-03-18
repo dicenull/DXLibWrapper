@@ -7,11 +7,11 @@ using DxLibDLL;
 
 namespace DxLibUtilities
 {
-    public class SceneManager
+    public class SceneManager<T>
     {
-        private SceneBase currentScene;
+        private SceneBase<T> currentScene;
         
-        public SceneManager(SceneBase startScene)
+        public SceneManager(SceneBase<T> startScene)
         {
             currentScene = startScene;
         }
