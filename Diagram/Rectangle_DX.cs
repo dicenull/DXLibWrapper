@@ -9,22 +9,14 @@ namespace Diagram
     /// </summary>
     public partial class Rectangle
     {
-        private void draw(Color color, bool isFill)
-        {
-            int x = TopLeft.X, y = TopLeft.Y;
-            int w = Size.w, h = Size.h;
-            
-            DX.DrawBox(x, y, x + w, y + h, color.ToDxColor(), isFill ? 1:0);
-        }
-
         public void Draw(Color color)
         {
-            draw(color, isFill: true);
+            DxDrawer.Instance.AddDiagram(this, color, true);
         }
 
         public void DrawFrame(Color color)
         {
-            draw(color, isFill: false);
+            DxDrawer.Instance.AddDiagram(this, color, false);
         }
     }
 }

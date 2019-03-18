@@ -11,6 +11,10 @@ namespace Diagram
         IDiagram MovedBy(int x, int y);
         IDiagram MovedBy(Vector2D vector);
 
+        void Draw(Color color);
+
+        void DrawFrame(Color color);
+
         /// <summary>
         /// 図形の中心
         /// </summary>

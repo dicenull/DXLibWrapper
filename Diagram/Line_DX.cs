@@ -4,11 +4,16 @@ using DxLibUtilities;
 
 namespace Diagram
 {
-    public partial class Line
+    public partial class Line : IDiagram
     {
         public void Draw(Color color)
         {
-            DX.DrawLine(Begin.X, Begin.Y, End.X, End.Y, color.ToDxColor());
+            DxDrawer.Instance.AddDiagram(this, color, false);
+        }
+
+        public void DrawFrame(Color color)
+        {
+            DxDrawer.Instance.AddDiagram(this, color, false);
         }
     }
 }
