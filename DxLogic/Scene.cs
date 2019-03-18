@@ -8,15 +8,6 @@ namespace DxLogic
 
         public abstract SceneBase<T> Update();
 
-        protected abstract void draw();
-        
-        public void Draw()
-        {
-            DX.ClearDrawScreen();
-
-            draw();
-
-            DX.ScreenFlip();
-        }
+        public abstract void Draw();
     }
 }

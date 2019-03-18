@@ -10,16 +10,12 @@ namespace DxLogic
 {
     public static class DxSystem
     {
-        private static int flip = 1;
         public static bool Update()
         {
             if (DX.ProcessMessage() == -1)
             {
                 return false;
             }
-
-            DX.ClearDrawScreen();
-            DxDrawer.Instance.Draw();
 
             if(!canUpdate)
             {
@@ -28,7 +24,7 @@ namespace DxLogic
 
             Input.Update();
 
-            DX.ScreenFlip();
+            DxDrawer.Instance.Draw();
 
             return true;
         }
