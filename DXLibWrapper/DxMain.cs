@@ -1,4 +1,5 @@
 ﻿using DxLibDLL;
+using DxLibUtilities;
 
 namespace DXLibWrapper
 {
@@ -7,7 +8,8 @@ namespace DXLibWrapper
         static void Main(string[] args)
         {
             DX.SetDrawScreen(DX.DX_SCREEN_BACK);
-            DX.ChangeWindowMode(DX.TRUE);
+
+            Window.IsWindowMode = true;
 
             var status = DX.DxLib_Init();
             if(status == -1)

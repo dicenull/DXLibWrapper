@@ -44,5 +44,17 @@ namespace DxLibUtilities
             }
         }
         private static string title = "DxLib";
+
+        public static bool IsWindowMode
+        {
+            get
+            {
+                return DX.GetWindowModeFlag() == DX.TRUE;
+            }
+            set
+            {
+                DX.ChangeWindowMode(value ? DX.TRUE : DX.FALSE);
+            }
+        }
     }
 }
