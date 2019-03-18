@@ -30,5 +30,19 @@ namespace DxLibUtilities
                 return Size / 2;
             }
         }
+
+        public static string Title
+        {
+            get
+            {
+                return title;
+            }
+            set
+            {
+                DX.SetMainWindowText(value);
+                title = value;
+            }
+        }
+        private static string title = "DxLib";
     }
 }
