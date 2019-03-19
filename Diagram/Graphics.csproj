@@ -47,13 +47,13 @@
     <Compile Include="Circle.cs" />
     <Compile Include="Circle_DX.cs" />
     <Compile Include="DxDrawer.cs" />
-    <Compile Include="IDiagram.cs" />
     <Compile Include="Intersections.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Line_DX.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rectangle.cs" />
     <Compile Include="Rectangle_DX.cs" />
+    <Compile Include="Texture.cs" />
     <Compile Include="Triangle.cs" />
     <Compile Include="Triangle_DX.cs" />
   </ItemGroup>

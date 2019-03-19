@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Numerics;
 using Utilities;
 
-namespace Diagram
+namespace Graphics
 {
     /// <summary>
     /// 四角形クラスロジック部

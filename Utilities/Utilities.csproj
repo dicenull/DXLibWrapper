@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Color.cs" />
     <Compile Include="ExpressionUtility.cs" />
+    <Compile Include="IDiagram.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Palette.cs" />
     <Compile Include="Vector2D.cs" />

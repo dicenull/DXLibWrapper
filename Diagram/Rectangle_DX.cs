@@ -1,8 +1,7 @@
 ﻿using Utilities;
 using DxLibDLL;
-using DxLibUtilities;
 
-namespace Diagram
+namespace Graphics
 {
     /// <summary>
     /// 四角形クラス描画部
@@ -11,12 +10,12 @@ namespace Diagram
     {
         public void Draw(Color color)
         {
-            DxDrawer.Instance.AddDiagram(this, color, true);
+            DxDrawer.Instance.DrawDiagram(this, color, true);
         }
 
         public void DrawFrame(Color color)
         {
-            DxDrawer.Instance.AddDiagram(this, color, false);
+            DxDrawer.Instance.DrawDiagram(this, color, false);
         }
     }
 }

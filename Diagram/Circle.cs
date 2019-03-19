@@ -1,6 +1,6 @@
 ﻿using Utilities;
 
-namespace Diagram
+namespace Graphics
 {
     public partial class Circle : IDiagram
     {
