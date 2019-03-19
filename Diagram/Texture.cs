@@ -4,7 +4,7 @@ using DxLibDLL;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DxLibUtilities
+namespace Graphics
 {
     public class Texture
     {
@@ -22,9 +22,10 @@ namespace DxLibUtilities
             }
         }
 
-        private int handle;
-        private double degree = 0;
-        private (double w, double h) scale = (1, 1);
+        public int Handle { get; }
+
+        public double Degree { get; private set; } = 0;
+        public (double w, double h) Scale { get; private set; } = (1, 1);
 
         public Vector2D Size { get; }
 
@@ -34,7 +35,7 @@ namespace DxLibUtilities
 
         public Texture(int handle)
         {
-            this.handle = handle;
+            this.Handle = handle;
 
             int w, h;
             DX.GetGraphSize(handle, out w, out h);
@@ -52,21 +53,10 @@ namespace DxLibUtilities
         /// <param name="pos">描画する左上の座標</param>
         public void Draw(Vector2D pos)
         {
-            var scaledSize = new Vector2D((int)(Size.X * scale.w), (int)(Size.Y * scale.h));
-            var center = pos + scaledSize / 2;
+            DxDrawer.Instance.DrawTexture(this, pos);
 
-            if (degree % 360 == 0)
-            {
-                DX.DrawExtendGraph(pos.X, pos.Y, pos.X + scaledSize.X, pos.Y + scaledSize.Y, handle, DX.TRUE);
-            }
-            else
-            {
-                DX.DrawRotaGraph3(center.X, center.Y, center.X, center.Y,
-                                scale.w, scale.h, Math.PI / 180.0 * degree, handle, DX.TRUE);
-            }
-
-            degree = 0;
-            scale = (1, 1);
+            Degree = 0;
+            Scale = (1, 1);
         }
 
         public void DrawAt()
@@ -85,16 +75,15 @@ namespace DxLibUtilities
 
         public Texture Rotated(int degree)
         {
-            this.degree += degree;
+            this.Degree += degree;
 
             return this;
         }
 
         public Texture Scaled(double w, double h)
         {
-            scale.w *= w;
-            scale.h *= h;
-
+            Scale = (Scale.w * w, Scale.h * h);
+            
             return this;
         }
 

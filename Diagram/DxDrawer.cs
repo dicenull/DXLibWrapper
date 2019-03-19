@@ -1,25 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Diagram;
 using DxLibDLL;
-using DxLibUtilities;
 using Utilities;
+using DxLibUtilities;
+using System;
 
-namespace Diagram
+namespace Graphics
 {
     public class DxDrawer
     {
         public static DxDrawer Instance { get; } = new DxDrawer();
 
-        private List<(IDiagram diagram, Color color, bool isFill)> drawDiagrams
-            = new List<(IDiagram, Color, bool)>();
-
         private DxDrawer() { }
 
-        private void drawDiagram(IDiagram diagram, Color color, bool isFill)
+        public void DrawDiagram(IDiagram diagram, Color color, bool isFill)
         {
             int fillFlag = (isFill) ? 1 : 0;
 
@@ -49,21 +43,25 @@ namespace Diagram
             }
         }
 
-        public void Draw()
+        public void DrawTexture(Texture texture, Vector2D pos)
         {
-            DX.ClearDrawScreen();
+            var size = texture.Size;
+            var scale = texture.Scale;
+            var degree = texture.Degree;
+            var handle = texture.Handle;
 
-            foreach (var drawData in drawDiagrams)
+            var scaledSize = new Vector2D((int)(size.X * scale.w), (int)(size.Y * scale.h));
+            var center = pos + scaledSize / 2;
+
+            if (degree % 360 == 0)
             {
-                drawDiagram(drawData.diagram, drawData.color, drawData.isFill);
+                DX.DrawExtendGraph(pos.X, pos.Y, pos.X + scaledSize.X, pos.Y + scaledSize.Y, handle, DX.TRUE);
             }
-
-            drawDiagrams.Clear();
-        }
-
-        public void AddDiagram(IDiagram diagram, Color color, bool isFill)
-        {
-            drawDiagrams.Add((diagram, color, isFill));
+            else
+            {
+                DX.DrawRotaGraph3(center.X, center.Y, center.X, center.Y,
+                                scale.w, scale.h, Math.PI / 180.0 * degree, handle, DX.TRUE);
+            }
         }
     }
 }
