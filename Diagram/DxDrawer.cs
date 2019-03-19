@@ -53,13 +53,12 @@ namespace Diagram
         {
             DX.ClearDrawScreen();
 
-            foreach(var drawData in drawDiagrams)
+            foreach (var drawData in drawDiagrams)
             {
                 drawDiagram(drawData.diagram, drawData.color, drawData.isFill);
             }
 
             drawDiagrams.Clear();
-            DX.ScreenFlip();
         }
 
         public void AddDiagram(IDiagram diagram, Color color, bool isFill)

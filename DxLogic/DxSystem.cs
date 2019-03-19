@@ -12,19 +12,20 @@ namespace DxLogic
     {
         public static bool Update()
         {
+            DX.ScreenFlip();
             if (DX.ProcessMessage() == -1)
             {
                 return false;
             }
 
-            if(!canUpdate)
+            DxDrawer.Instance.Draw();
+
+            if (!canUpdate)
             {
                 return false;
             }
 
             Input.Update();
-
-            DxDrawer.Instance.Draw();
 
             return true;
         }
