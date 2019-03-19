@@ -45,12 +45,11 @@ namespace Graphics
 
         public void DrawTexture(Texture texture, Vector2D pos)
         {
-            var size = texture.Size;
             var scale = texture.Scale;
             var degree = texture.Degree;
             var handle = texture.Handle;
+            var scaledSize = texture.ScaledSize;
 
-            var scaledSize = new Vector2D((int)(size.X * scale.w), (int)(size.Y * scale.h));
             var center = pos + scaledSize / 2;
 
             if (degree % 360 == 0)

@@ -29,6 +29,7 @@ namespace Graphics
 
         public Vector2D Size { get; }
 
+        public Vector2D ScaledSize { get { return new Vector2D((int)(Size.X * Scale.w), (int)(Size.Y * Scale.h)); } }
 
         public Texture(string path)
             : this(DX.LoadGraph(path)) { }
@@ -40,6 +41,12 @@ namespace Graphics
             int w, h;
             DX.GetGraphSize(handle, out w, out h);
             Size = new Vector2D(w, h);
+        }
+
+        public void InitStatus()
+        {
+            Degree = 0;
+            Scale = (1, 1);
         }
 
         public void Draw()
@@ -54,9 +61,6 @@ namespace Graphics
         public void Draw(Vector2D pos)
         {
             DxDrawer.Instance.DrawTexture(this, pos);
-
-            Degree = 0;
-            Scale = (1, 1);
         }
 
         public void DrawAt()
@@ -70,7 +74,7 @@ namespace Graphics
         /// <param name="center">描画する中心座標</param>
         public void DrawAt(Vector2D center)
         {
-            Draw(center - Size / 2);
+            Draw(center - ScaledSize / 2);
         }
 
         public Texture Rotated(int degree)
@@ -80,6 +84,11 @@ namespace Graphics
             return this;
         }
 
+        /// <summary>
+        /// 倍率を指定して大きさを変更
+        /// </summary>
+        /// <param name="w">横の倍率</param>
+        /// <param name="h">縦の倍率</param>
         public Texture Scaled(double w, double h)
         {
             Scale = (Scale.w * w, Scale.h * h);
@@ -87,5 +96,15 @@ namespace Graphics
             return this;
         }
 
+        /// <summary>
+        /// 大きさを指定して変更
+        /// </summary>
+        /// <param name="size">大きさ</param>
+        public Texture Scaled(Vector2D size)
+        {
+            Scale = (size.X / (double)(Size.X), size.Y / (double)(Size.Y));
+
+            return this;
+        }
     }
 }
