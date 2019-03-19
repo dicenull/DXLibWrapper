@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Utilities;
 
-namespace Diagram
+namespace Graphics
 {
 
     public static class Vector2DExtensions

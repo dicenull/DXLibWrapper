@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Diagram;
+using Graphics;
 using Utilities;
 
 namespace DiagramTest

@@ -56,9 +56,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Diagram\Diagram.csproj">
+    <ProjectReference Include="..\Diagram\Graphics.csproj">
       <Project>{805b8754-7dbe-433a-a874-e7dd99c6ca27}</Project>
-      <Name>Diagram</Name>
+      <Name>Graphics</Name>
     </ProjectReference>
     <ProjectReference Include="..\DxLibrary\DxLibrary.csproj">
       <Project>{43e26b34-895c-4aab-92f0-5fcb7c3bd7b5}</Project>

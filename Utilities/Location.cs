@@ -2,7 +2,7 @@
 using System;
 using Utilities;
 
-namespace Diagram
+namespace Graphics
 {
     public enum Location
     {

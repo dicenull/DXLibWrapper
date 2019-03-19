@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Diagram;
+using Graphics;
 using DxLibDLL;
 
 namespace DxLogic
@@ -17,8 +17,7 @@ namespace DxLogic
             {
                 return false;
             }
-
-            DxDrawer.Instance.Draw();
+            DX.ClearDrawScreen();
 
             if (!canUpdate)
             {

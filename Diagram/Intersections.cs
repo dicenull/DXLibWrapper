@@ -1,7 +1,7 @@
 ﻿using System;
 using Utilities;
 
-namespace Diagram
+namespace Graphics
 {
     public static class Intersections
     {

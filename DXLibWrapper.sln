@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28711.60
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DxLibUtilities", "DxLibUtilities\DxLibUtilities.csproj", "{9EBA38A3-BF2E-4B35-80E1-9372FDB5BB59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diagram", "Diagram\Diagram.csproj", "{805B8754-7DBE-433A-A874-E7DD99C6CA27}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graphics", "Diagram\Graphics.csproj", "{805B8754-7DBE-433A-A874-E7DD99C6CA27}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{FD6F17D8-4A94-4645-84B6-5810BC9D90EB}"
 EndProject

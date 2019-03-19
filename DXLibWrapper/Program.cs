@@ -1,7 +1,7 @@
 ﻿using DxLibUtilities;
 using DxLibDLL;
 using DxLogic;
-using Diagram;
+using Graphics;
 using Utilities;
 
 public class Program
