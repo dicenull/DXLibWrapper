@@ -11,7 +11,7 @@ namespace DxLogic
             {
                 ConsoleKey.Backspace => DX.KEY_INPUT_BACK,
                 ConsoleKey.Tab => DX.KEY_INPUT_TAB,
-                ConsoleKey.Enter => DX.KEY_INPUT_ESCAPE,
+                ConsoleKey.Enter => DX.KEY_INPUT_RETURN,
                 ConsoleKey.Pause => DX.KEY_INPUT_PAUSE,
                 ConsoleKey.Escape => DX.KEY_INPUT_ESCAPE,
                 ConsoleKey.Spacebar => DX.KEY_INPUT_SPACE,
