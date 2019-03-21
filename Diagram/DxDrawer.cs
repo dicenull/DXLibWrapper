@@ -58,7 +58,7 @@ namespace Graphics
             }
             else
             {
-                DX.DrawRotaGraph3(center.X, center.Y, center.X, center.Y,
+                DX.DrawRotaGraph3(center.X, center.Y, scaledSize.X / 2, scaledSize.X / 2,
                                 scale.w, scale.h, Math.PI / 180.0 * degree, handle, DX.TRUE);
             }
         }
