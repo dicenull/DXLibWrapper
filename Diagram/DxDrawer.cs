@@ -61,8 +61,6 @@ namespace Graphics
                 DX.DrawRotaGraph2(center.X, center.Y, texture.Size.X / 2, texture.Size.Y / 2, scale,
                     Math.PI / 180.0 * degree, handle, DX.TRUE);
             }
-
-            new Circle(center, 6).Draw(Palette.Blue);
         }
     }
 }
