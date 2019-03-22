@@ -25,11 +25,11 @@ namespace Graphics
         public int Handle { get; }
 
         public double Degree { get; private set; } = 0;
-        public (double w, double h) Scale { get; private set; } = (1, 1);
+        public double Scale { get; private set; } = 1;
 
         public Vector2D Size { get; }
 
-        public Vector2D ScaledSize { get { return new Vector2D((int)(Size.X * Scale.w), (int)(Size.Y * Scale.h)); } }
+        public Vector2D ScaledSize { get { return new Vector2D((int)(Size.X * Scale), (int)(Size.Y * Scale)); } }
 
         public Texture(string path)
             : this(DX.LoadGraph(path)) { }
@@ -46,7 +46,7 @@ namespace Graphics
         public void InitStatus()
         {
             Degree = 0;
-            Scale = (1, 1);
+            Scale = 1;
         }
 
         public void Draw()
@@ -87,24 +87,29 @@ namespace Graphics
         /// <summary>
         /// 倍率を指定して大きさを変更
         /// </summary>
-        /// <param name="w">横の倍率</param>
-        /// <param name="h">縦の倍率</param>
-        public Texture Scaled(double w, double h)
+        /// <param name="scale">倍率</param>
+        public Texture Scaled(double scale)
         {
-            Scale = (Scale.w * w, Scale.h * h);
+            Scale *= scale;
             
             return this;
         }
 
-        /// <summary>
-        /// 大きさを指定して変更
-        /// </summary>
-        /// <param name="size">大きさ</param>
-        public Texture Scaled(Vector2D size)
+        public Texture Scaled(int length, BasedOn based)
         {
-            Scale = (size.X / (double)(Size.X), size.Y / (double)(Size.Y));
+            Scale = based switch
+            {
+                BasedOn.Width => length / (double)Size.X,
+                BasedOn.Height => length / (double)Size.Y,
+                _ => throw new ArgumentException()
+            };
 
             return this;
         }
     }
+
+    public enum BasedOn
+    {
+        Width, Height
+    };
 }
