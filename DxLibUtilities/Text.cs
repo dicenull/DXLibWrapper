@@ -7,7 +7,7 @@ namespace DxLibUtilities
 {
     public class Text
     {
-        private int handle;
+        private readonly int handle;
 
         /// <param name="size">文字の大きさ</param>
         public Text(int size)
@@ -38,6 +38,6 @@ namespace DxLibUtilities
         public void Draw(string text, Vector2D pos, Color color)
         {
             DX.DrawStringToHandle(pos.X, pos.Y, text, color.ToDxColor(), handle);
-        }
+		}
     }
 }

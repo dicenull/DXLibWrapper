@@ -24,7 +24,7 @@ namespace DxLogic
                 return false;
             }
 
-            Input.Update();
+            DeviceInput.Update();
 
             return true;
         }

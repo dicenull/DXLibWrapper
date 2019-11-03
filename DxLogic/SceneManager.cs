@@ -1,6 +1,10 @@
 ﻿
 namespace DxLogic
 {
+	/// <summary>
+	/// シーン遷移を管理する
+	/// </summary>
+	/// <typeparam name="T">シーン間で共有するデータ</typeparam>
     public class SceneManager<T>
     {
         private SceneBase<T> currentScene;
@@ -10,17 +14,29 @@ namespace DxLogic
             currentScene = startScene;
         }
 
-        public void UpdateAndDraw()
+		/// <summary>
+		/// 描画処理がして、次のシーンに更新する
+		/// </summary>
+        public void DrawAndUpdate()
         {
-            currentScene.Draw();
-            var nextScene = currentScene.Update();
-
-            if(nextScene == null)
-            {
-                DxSystem.Exit();
-            }
-
-            currentScene = nextScene;
+			Draw(); Update();
         }
+
+		public void Draw()
+		{
+			currentScene.Draw();
+		}
+
+		public void Update()
+		{
+			var nextScene = currentScene.Update();
+
+			if (nextScene == null)
+			{
+				DxSystem.Exit();
+			}
+
+			currentScene = nextScene;
+		}
     }
 }

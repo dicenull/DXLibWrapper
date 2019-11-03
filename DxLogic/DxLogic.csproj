@@ -52,7 +52,7 @@
     <Compile Include="Mouse.cs" />
     <Compile Include="MouseButton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scene.cs" />
+    <Compile Include="SceneBase.cs" />
     <Compile Include="SceneManager.cs" />
   </ItemGroup>
   <ItemGroup>

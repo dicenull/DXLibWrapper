@@ -3,26 +3,34 @@ using Utilities;
 
 namespace DxLibUtilities
 {
+	/// <summary>
+	/// ウィンドウを管理する
+	/// </summary>
     public static class Window
     {
+		/// <summary>
+		/// ウィンドウの大きさ
+		/// </summary>
         public static Vector2D Size
         {
             get
             {
-                int w, h;
-                DX.GetScreenState(out w, out h, out _);
+				DX.GetScreenState(out int w, out int h, out _);
 
-                return new Vector2D(w, h);
+				return new Vector2D(w, h);
             }
 
             set
             {
-                int bitDepth;
-                DX.GetScreenState(out _, out _, out bitDepth);
-                DX.SetGraphMode(value.X, value.Y, bitDepth);
+				// ビット震度を変えずにウィンドウの大きさだけ変更する
+				DX.GetScreenState(out _, out _, out int bitDepth);
+				DX.SetGraphMode(value.X, value.Y, bitDepth);
             }
         }
 
+		/// <summary>
+		/// ウィンドウの中央
+		/// </summary>
         public static Vector2D Center
         {
             get
@@ -31,6 +39,9 @@ namespace DxLibUtilities
             }
         }
 
+		/// <summary>
+		/// ウィンドウタイトル
+		/// </summary>
         public static string Title
         {
             get
@@ -45,6 +56,9 @@ namespace DxLibUtilities
         }
         private static string title = "DxLib";
 
+		/// <summary>
+		/// フルスクリーンモードかウィンドウモードか
+		/// </summary>
         public static bool IsWindowMode
         {
             get

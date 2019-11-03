@@ -4,8 +4,13 @@ using DxLibDLL;
 namespace DxLogic
 {
     public static class KeyCodeExtentions
-    {
-        public static int ToCode(this ConsoleKey key)
+	{
+		/// <summary>
+		/// どのキーか表す番号をSystemからDxlibに変換する
+		/// </summary>
+		/// <param name="key">Systemのキー番号</param>
+		/// <returns>Dxlibのキー番号</returns>
+		public static int ToCode(this ConsoleKey key)
         {
             return key switch
             {

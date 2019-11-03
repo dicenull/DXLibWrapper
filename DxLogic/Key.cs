@@ -37,7 +37,7 @@ namespace DxLogic
             DX.GetHitKeyStateAll(keys[flip]);
         }
 
-        private byte[][] keys = { new byte[256], new byte[256] };
+        private readonly byte[][] keys = { new byte[256], new byte[256] };
         private int flip = 0;
         private int prev { get { return 1 - flip; } }
     }

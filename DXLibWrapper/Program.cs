@@ -10,7 +10,7 @@ public class Program
     {
         while (DxSystem.Update())
         {
-            new Circle(Input.Mouse.Point, 10).Draw(Palette.Blue);
+            new Circle(DeviceInput.Mouse.Point, 10).Draw(Palette.Blue);
         }
     }
 }

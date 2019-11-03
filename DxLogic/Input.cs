@@ -1,7 +1,10 @@
 ﻿
 namespace DxLogic
 {
-    public static class Input
+	/// <summary>
+	/// 入力機器の入力をまとめたクラス
+	/// </summary>
+    public static class DeviceInput
     {
         public static Key Key { get; } = new Key();
 
